@@ -1,8 +1,9 @@
 import {configureStore , combineReducers} from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
-import transactionReducer from "./transaction/slice"
-import authReducer from "./auth/slice"
+import transactionReducer from "./transaction/slice";
+import filtersReducer from './filters/slice';
+import authReducer from "./auth/slice";
 
 const authPersistConfig = {
   key: "auth",
@@ -12,6 +13,7 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
     transactions: transactionReducer,
+    filters:filtersReducer,
     auth:persistReducer(authPersistConfig, authReducer),
   });
 
