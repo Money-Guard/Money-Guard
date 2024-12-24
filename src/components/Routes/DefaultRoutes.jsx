@@ -2,15 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router";
 
-export default function PrivateRoute() {
+const DefaultRoutes = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace={true} />;
+  if (isLoggedIn) {
+    return <Navigate to="/home" replace />;
   }
+  return <Outlet />;
+};
 
-  return (
-    <>
-      <Outlet />
-    </>
-  );
-}
+export default DefaultRoutes;

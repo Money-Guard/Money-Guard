@@ -1,11 +1,10 @@
 import "./App.css";
-import LoginForm from "./components/LoginForm/LoginForm";
+import AppRoutes from "./components/Routes/AppRoutes";
 
 function App() {
   return (
     <>
-      <div className="text-3xl">hello world and development</div>
-      <LoginForm/>
+      <AppRoutes />
     </>
   );
 }
