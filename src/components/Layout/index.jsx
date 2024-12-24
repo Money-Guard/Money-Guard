@@ -3,12 +3,12 @@ import { Outlet } from "react-router";
 
 const Layout = () => {
   return (
-    <Suspense fallback={<div>Loading</div>}>
+    <div>
       {/* Nav felan burada olucak */}
       <main>
         <Outlet />
       </main>
-    </Suspense>
+    </div>
   );
 };
 
