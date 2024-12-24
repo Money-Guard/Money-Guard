@@ -1,10 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Outlet } from "react-router";
 
 const Layout = () => {
   return (
     <div>
-      {/* Nav felan burada olucak */}
+      {/* Nav falan burada olucak */}
       <main>
         <Outlet />
       </main>
