@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Route, Routes, Navigate } from "react-router";
 import Layout from "../Layout/index";
 import DefaultRoutes from "./DefaultRoutes";
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoutes from "./PrivateRoutes";
 const LoginPage = lazy(() => import("../../pages/LoginPage/index"));
 const RegistirationPage = lazy(() =>
   import("../../pages/RegistrationPage/index")
@@ -20,7 +20,7 @@ export default function AppRoutes() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registration" element={<RegistirationPage />} />
           </Route>
-          <Route element={<PrivateRoute />}>
+          <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
           </Route>
