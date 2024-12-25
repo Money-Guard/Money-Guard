@@ -17,7 +17,7 @@ import { logout } from '../../redux/auth/operations';
   const username = email.split('@')[0]; // Kullanıcı adını email'den al
 
   const handleClick = () => {
-    dispatch(logOut()); // Çıkış işlemi
+    dispatch(logout()); // Çıkış işlemi
   };
 
   return (
