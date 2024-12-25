@@ -4,8 +4,9 @@ import { Navigate, Outlet } from "react-router";
 
 const DefaultRoutes = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
+
   if (isLoggedIn) {
-    return <Navigate to="/home" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
   return <Outlet />;
 };

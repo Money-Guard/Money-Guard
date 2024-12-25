@@ -1,7 +1,12 @@
-import React from 'react'
+import React from "react";
+import LoginForm from "../../components/LoginForm";
 
-export default function index() {
+const LoginPage = () => {
   return (
-    <div>Login page</div>
-  )
-}
+    <div>
+      <LoginForm />
+    </div>
+  );
+};
+
+export default LoginPage;
