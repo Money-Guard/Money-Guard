@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {fetchTransactions,addTransaction,deleteTransaction,editTransaction} from "./operations";
+import {
+  fetchTransactions,
+  addTransaction,
+  deleteTransaction,
+  editTransaction,
+} from "./operations";
 
 const initialState = {
   transactionList: [],
   status: "idle",
   error: null,
+  isLoading: true,
 };
 
 const transactionSlice = createSlice({
@@ -31,7 +37,21 @@ const transactionSlice = createSlice({
         state.transactionList = state.transactionList.filter(
           (transaction) => transaction.id !== action.payload
         );
-      });
+      })
+      .addMatcher(
+        (action) => action.type.endsWith("/pending"),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        (action) => action.type.endsWith("/rejected"),
+        (state) => {
+          state.error = action.payload;
+          state.isLoading = false;
+        }
+      );
   },
 });
 
