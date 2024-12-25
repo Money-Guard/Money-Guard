@@ -1,0 +1,34 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background:  linear-gradient(270.02deg, #2E1746 3.2%, #2E225F 99.98%);;
+    color: #fff;
+}
+
+
+
+.header__logo-image {
+    width: 100px;
+    margin-right: 10px;
+}
+
+
+
+.header__user-section {
+    display: flex;
+    align-items: center;
+}
+
+.header__username {
+    margin-right: 15px;
+}
+
+
+
+
+
+.header__exit-icon {
+    margin-right: 5px;
+}
