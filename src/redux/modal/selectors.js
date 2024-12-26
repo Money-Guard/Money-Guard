@@ -1,0 +1,1 @@
+export const {isModalOpen} = useSelector(state => state.modal)
