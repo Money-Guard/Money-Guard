@@ -1,0 +1,38 @@
+.Nav {
+    display: flex;
+    justify-content: space-around;
+    justify-content: center;
+    padding: 15px 20px;
+    background-color: #2F15B0BA;
+    backdrop-filter: blur(200px)
+}
+
+.NavList {
+    margin-left: 25px;
+    display: flex;
+    list-style: none;
+    gap:10px
+}
+
+.Icon{
+width: 20px;
+height: 20px;
+padding: 2px;
+color: #000000;
+background-color: #FFFFFF66;
+border-radius: 2px;
+}
+.ActiveLink
+{
+width: 20px;
+height: 20px;
+padding: 2px;
+transition: all 250ms ease;
+border-radius: 2px;
+color: white;
+background-color:  #4A56E2;
+
+}
+.NavLink:hover {
+    background-color: #f1f1f1;
+}
