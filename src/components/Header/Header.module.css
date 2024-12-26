@@ -1,34 +1,24 @@
-.header {
+.Header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 10px 20px;
     background:  linear-gradient(270.02deg, #2E1746 3.2%, #2E225F 99.98%);;
     color: #fff;
 }
 
-
-
-.header__logo-image {
+.HeaderImage {
     width: 100px;
     margin-right: 10px;
+    margin-left: 20px;
 }
 
-
-
-.header__user-section {
+.HeaderUserSection {
     display: flex;
     align-items: center;
+    margin-right: 20px;
 }
 
-.header__username {
+.HeaderUserName {
     margin-right: 15px;
 }
 
-
-
-
-
-.header__exit-icon {
-    margin-right: 5px;
-}
