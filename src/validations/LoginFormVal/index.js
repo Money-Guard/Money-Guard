@@ -9,6 +9,7 @@ export const loginSchema = yup
     password: yup
       .string()
       .min(6, "Şifre en az 6 karakter olmalıdır")
+      .max(30, "Şifre en fazla 30 karakter olmalıdır")
       .required("Şifre alanı zorunludur"),
   })
   .required();

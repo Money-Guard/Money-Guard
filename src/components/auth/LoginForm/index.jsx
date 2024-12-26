@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../../../validations/LoginFormVal/LoginFormVal";
+import { loginSchema } from "../../../validations/LoginFormVal";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../redux/auth/operations";
 import { Mail, Lock } from "lucide-react";
