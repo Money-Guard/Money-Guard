@@ -1,0 +1,48 @@
+
+.BalanceContainer{
+    width: 280px;
+    height: 80px;
+    background-image: url('../../../assets/images/BalanceBackground.png');
+   background-size: cover;
+    background-position: center;
+   display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin: 0 auto;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.BalanceTitle{
+    font-family: poppins;
+    color: #FFFFFF66;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    padding-right: 90px;
+    padding-top: 8px;
+   
+}
+.Amount{
+    font-family: poppins;
+    font-size: 30px;
+    font-weight: 400;
+    color: #FBFBFB;
+    line-height: 45px;
+
+}
+.BalanceCurrency{
+    font-family: poppins;
+        font-size: 30px;
+        font-weight: 700;
+        color: #FBFBFB;
+        line-height: 45px;
+}
+@media screen and (min-width: 768px){
+
+}
+@media (min-width: 1280px) {
+
+}
