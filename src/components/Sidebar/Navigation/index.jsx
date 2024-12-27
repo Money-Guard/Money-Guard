@@ -15,7 +15,7 @@ const Navigation = () => {
             className={({ isActive }) => (isActive ? styles.ActiveLink : '')}
           >
             <TiHome className={styles.Icon} />
-            <span>Home</span>
+            <p className={styles.NavTitle}>Home</p>
           </NavLink>
         </li>
         <li className={styles.NavItem}>
@@ -24,7 +24,7 @@ const Navigation = () => {
             className={({ isActive }) => (isActive ? styles.ActiveLink : '')}
           >
             <BiStats className={styles.Icon} />
-            Statistics
+            <p className={styles.NavTitle}>Statistics</p>
           </NavLink>
         </li>
         <li className={styles.NavItem}>
@@ -33,7 +33,7 @@ const Navigation = () => {
             className={({ isActive }) => (isActive ? styles.ActiveLink : '')}
           >
             <FaDollarSign className={styles.Icon} />
-            Currency
+            
           </NavLink>
         </li>
       </ul>
