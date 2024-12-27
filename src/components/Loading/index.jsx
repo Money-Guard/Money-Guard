@@ -1,12 +1,13 @@
-import React from "react";
-
+import style from "./index.module.css";
 
 const Loading = () => {
 
   return (
-    <div>
-        <p>Loading...</p>
-    </div>
+  <div className={style.loader}>
+  <div className={style.dot}></div> 
+  <div className={style.dot}></div>    
+  <div className={style.dot}></div>    
+  </div>
   );
 };
 
