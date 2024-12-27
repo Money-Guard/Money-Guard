@@ -2,18 +2,13 @@
 .BalanceContainer{
     width: 280px;
     height: 80px;
-    background-image: url('../../../assets/images/BalanceBackground.png');
-   background-size: cover;
-    background-position: center;
-   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background:#523B7E99;
     border-radius: 8px;
     margin: 0 auto;
     margin-top: 32px;
     margin-bottom: 32px;
 }
+
 
 .BalanceTitle{
     font-family: poppins;
@@ -21,8 +16,9 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
-    padding-right: 90px;
-    padding-top: 8px;
+   padding-left: 32px;
+    padding-top: 6px;
+    
    
 }
 .Amount{
@@ -31,6 +27,8 @@
     font-weight: 400;
     color: #FBFBFB;
     line-height: 45px;
+    padding-left: 10px;
+    padding-bottom: 12px;
 
 }
 .BalanceCurrency{
@@ -39,10 +37,27 @@
         font-weight: 700;
         color: #FBFBFB;
         line-height: 45px;
+        padding-left: 32px;
 }
-@media screen and (min-width: 768px){
 
+@media screen and (min-width: 768px){
+.BalanceContainer {
+        width: 336px;
+        height: 80px;
+        margin-left: 30px;
 }
+}
+
 @media (min-width: 1280px) {
 
+.BalanceContainer {
+width: 480px;
+height: 80px;
+margin-left: 0; 
+}
+.BalanceTitle {
+          
+padding-right: 50px;
+        
+}
 }
