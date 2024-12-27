@@ -4,7 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const modalSlice = createSlice({
     name: "modal",
     initialState: {
-        isModalOpen: false
+        isModalOpen: false,
+        modalMode: null
     },
     reducers: {
         openModal: (state) => {
