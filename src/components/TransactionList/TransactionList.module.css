@@ -1,0 +1,79 @@
+/* Genel tablo düzeni */
+.tableContainer {
+  max-width: 900px; /* Tablonun maksimum genişliği */
+  margin: 0 auto; /* Varsayılan olarak ortalanır */
+  overflow-x: auto; /* İçeriğin taşmasını önler */
+  background: rgba(0, 0, 0, 0.6); /* Tablo arka planı */
+  border-radius: 10px; /* Yuvarlatılmış kenarlar */
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Hafif gölge */
+}
+
+/* Tablo genel stili */
+.transactionTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.transactionTable thead {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2)
+  );
+}
+
+.transactionTable th,
+.transactionTable td {
+  padding: 1rem;
+  text-align: left;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.transactionTable tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sum {
+  font-weight: bold;
+  color: #ffc727;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Responsive tasarım */
+
+/* Tablet düzeni */
+@media (min-width: 768px) {
+  .tableContainer {
+    margin: 0 auto; /* Tablet görünümünde ortalanır */
+  }
+}
+
+/* Masaüstü düzeni */
+@media (min-width: 1024px) {
+  .tableContainer {
+    margin-left: 0; /* Masaüstü görünümünde sol tarafa yaslanır */
+    margin-right: auto; /* Sağda boşluk kalır */
+  }
+}
+
+/* Mobil düzeni */
+@media (max-width: 767px) {
+  .tableContainer {
+    max-width: 100%; /* Mobilde tam genişlikte olur */
+    margin: 0 auto; /* Mobilde ortalanır */
+    padding: 0.5rem;
+  }
+
+  .transactionTable th,
+  .transactionTable td {
+    font-size: 0.9rem; /* Daha küçük font boyutu */
+    padding: 0.5rem; /* Daha az padding */
+  }
+}

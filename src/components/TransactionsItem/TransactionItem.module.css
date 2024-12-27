@@ -1,0 +1,46 @@
+.transactionItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.transactionItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sum {
+  font-weight: bold;
+  color: #ffc727;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editBtn {
+  background: #4caf50;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+.deleteBtn {
+  background: linear-gradient(90deg, #ffc727, #9e40ba, #7000ff);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.deleteBtn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.deleteBtn:active {
+  transform: scale(0.95);
+}
