@@ -1,1 +1,1 @@
-export const {isModalOpen} = useSelector(state => state.modal)
+export const isModalOpen = (state) => state.modal.isModalOpen;
