@@ -7,15 +7,17 @@ import styles from './Navigation.module.css'; // Modül CSS
 
 const Navigation = () => {
   return (
-    <nav className={styles.Nav}>
+    <nav className={styles.NavContainer}>
       <ul className={styles.NavList}>
         <li className={styles.NavItem}>
           <NavLink
             to="/home"
             className={({ isActive }) => (isActive ? styles.ActiveLink : '')}
           >
+            <div className={styles.IconTitleContainer}>
             <TiHome className={styles.Icon} />
-            <p className={styles.NavTitle}>Home</p>
+              <p className={styles.NavTitle}>Home</p>
+            </div>
           </NavLink>
         </li>
         <li className={styles.NavItem}>
@@ -23,8 +25,10 @@ const Navigation = () => {
             to="/statistics"
             className={({ isActive }) => (isActive ? styles.ActiveLink : '')}
           >
+            <div className={styles.IconTitleContainer}>
             <BiStats className={styles.Icon} />
-            <p className={styles.NavTitle}>Statistics</p>
+              <p className={styles.NavTitle}>Statistics</p>
+            </div>
           </NavLink>
         </li>
         <li className={styles.NavItem}>
@@ -32,7 +36,10 @@ const Navigation = () => {
             to="/currency"
             className={({ isActive }) => (isActive ? styles.ActiveLink : '')}
           >
-            <FaDollarSign className={styles.Icon} />
+            <div className={styles.IconTitleContainer}>
+            <FaDollarSign className={styles.CurrencyIcon} />
+              <p className={styles.NavCurrencyTitle}>Currency</p>
+            </div>
             
           </NavLink>
         </li>
