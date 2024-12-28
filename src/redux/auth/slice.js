@@ -9,37 +9,45 @@ const initialState = {
   token: "",
   isLoggedIn: false,
   status: "idle",
-  isLoading: true,
+  isLoading: false,
   error: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: initialState,
+  initialState,
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        state.status = "succeessed";
+        state.status = "succeeded";
         state.isLoggedIn = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.status = "successed";
+        state.status = "succeeded"; 
         state.isLoggedIn = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.status = "successed";
+        state.status = "succeeded"; 
         state.isLoggedIn = false;
         state.user = null;
         state.token = null;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(currentUser.fulfilled, (state, action) => {
-        state.status = "successed";
+        state.status = "succeeded"; 
         state.isLoggedIn = true;
         state.user = action.payload;
+        state.isLoading = false;
+        state.error = null;
       })
       .addMatcher(
         (action) => action.type.endsWith("/pending"),
@@ -50,7 +58,7 @@ const authSlice = createSlice({
       )
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
-        (state) => {
+        (state, action) => {
           state.error = action.payload;
           state.isLoading = false;
         }
