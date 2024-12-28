@@ -13,8 +13,6 @@ export default function DashboardPage() {
       {/* Transaction List */}
       <TransactionList />
       {/* Transaction Item */}
-      <TransactionsItem />
-      {/* Dinamik içerik için Outlet */}
       <Outlet />
     </>
   );

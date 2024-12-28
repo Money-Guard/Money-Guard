@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectTransactions } from "../../redux/transaction/selectors";
 import { deleteTransaction } from "../../redux/transaction/operations"; // Silme işlemi için operasyon
 import styles from "./TransactionList.module.css";
-import TransactionItem from "../TransactionItem";
+import TransactionItem from "../TransactionsItem";
 
 const TransactionList = () => {
   const transactions = useSelector(selectTransactions);
