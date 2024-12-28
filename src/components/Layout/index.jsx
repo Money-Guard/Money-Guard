@@ -15,7 +15,7 @@ const Layout = () => {
         try{
           await dispatch(currentUser(token)); 
         }catch(err){
-          console.log(err);
+          console.error(err);
         }finally{
           setIsLoading(false);
         }
