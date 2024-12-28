@@ -23,7 +23,6 @@ const transactionSlice = createSlice({
     builder
       // Fetch transactions
       .addCase(fetchTransactions.fulfilled, (state, action) => {
-        state.status = "succeeded";
         state.transactionList = action.payload;
         state.isLoading = false;
         state.error = null;
@@ -41,7 +40,6 @@ const transactionSlice = createSlice({
       
       // Add transaction
       .addCase(addTransaction.fulfilled, (state, action) => {
-        state.status = "succeeded";
         state.transactionList.push(action.payload);
         state.isLoading = false;
         state.error = null;
@@ -59,7 +57,6 @@ const transactionSlice = createSlice({
       
       // Edit transaction
       .addCase(editTransaction.fulfilled, (state, action) => {
-        state.status = "succeeded";
         const updatedTransaction = action.payload;
         const index = state.transactionList.findIndex(
           (transaction) => transaction.id === updatedTransaction.id
@@ -83,7 +80,6 @@ const transactionSlice = createSlice({
       
       // Delete transaction
       .addCase(deleteTransaction.fulfilled, (state, action) => {
-        state.status = "succeeded";
         state.transactionList = state.transactionList.filter(
           (transaction) => transaction.id !== action.payload
         );

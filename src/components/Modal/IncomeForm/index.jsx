@@ -14,7 +14,6 @@ export default function Index() {
 
   const incomeCategories = categories.filter(category => category.type === 'INCOME' && category.id);
 
-  console.log(incomeCategories.map(incomeCategorie => incomeCategorie.id)[0])
   const {
     register,
     handleSubmit,
