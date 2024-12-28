@@ -1,0 +1,48 @@
+.statisticsTab {
+  padding: 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column; /* Mobil cihazlar için dikey düzen */
+  width: 100%;
+  gap: 4px;
+  background: linear-gradient(to bottom right, #4c1d95, #5b21b6, #1e3a8a);
+}
+
+.chart {
+  width: 100%; /* Mobil cihazlarda tam genişlik */
+  max-width: 100%;
+}
+
+.statisticTable {
+  width: 100%; /* Mobil cihazlarda tam genişlik */
+}
+
+/* Tablet ve üzeri cihazlar için */
+@media (min-width: 768px) {
+  .statisticsTab {
+    flex-direction: row; /* Yatay düzen */
+  }
+  .chart,
+  .statisticTable {
+    width: 50%;
+  }
+  .h3 {
+    font-size: 28px; /* Tabletler için başlık boyutu */
+    line-height: 42px;
+  }
+}
+
+/* Masaüstü ve daha büyük ekranlar için */
+@media (min-width: 1024px) {
+  .statisticsTab {
+    width: 60%; /* Sayfanın %60'ını kaplar */
+    margin-left: auto; /* Sağ tarafa yaslar */
+  }
+  .chart {
+    max-width: 400px; /* Masaüstü için maksimum genişlik */
+  }
+  .h3 {
+    font-size: 30px; /* Masaüstü için başlık boyutu */
+    line-height: 45px;
+  }
+}
