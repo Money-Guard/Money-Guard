@@ -1,6 +1,7 @@
 import "./App.css";
 import AppRoutes from "./components/Routes/AppRoutes";
 import Header from "./components/Header/index";
+import CurrencyTab from "./components/Sidebar/Currency/index";
 
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
     <>
      
       <AppRoutes />
-      <Header/>
+      <Header />
+      <CurrencyTab />
     </>
   );
 }
