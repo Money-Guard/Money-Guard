@@ -4,13 +4,13 @@ import Layout from "../Layout/index";
 import DefaultRoutes from "./DefaultRoutes";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayout from "../DashboardLayout";
-import StatisticsTab from "../StaticDashboard/StaticTab/StatisticsTab";
 
 const LoginPage = lazy(() => import("../../pages/LoginPage"));
 const RegistirationPage = lazy(() => import("../../pages/RegistrationPage"));
 const Deneme = lazy(() => import("../Deneme"));
 const DashboardPage = lazy(() => import("../../pages/DashboardPage/index"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/index"));
+const StatisticsTab = lazy(()=>import('../../components/StaticDashboard/StaticTab/StatisticsTab'))
 export default function AppRoutes() {
   return (
     <Suspense>

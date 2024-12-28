@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Header.module.css'; 
+import styles from './Header.module.css';
 import { IoLogOutOutline } from "react-icons/io5";
 import logo from '../../assets/images/MoneyGuardLogo.png';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,13 +19,20 @@ const Header = () => {
         <img src={logo} alt="Logo" className={styles.HeaderImage} />
       </div>
       <div className={styles.HeaderUserSection}>
-        <span className={styles.HeaderUserName}>{username}</span> {/* Kullanıcı adı yoksa 'Name' göster */}
+        <span className={styles.HeaderUserName}>{username || 'Name'}</span> {/* Kullanıcı adı yoksa 'Name' göster */}
+        
+        {/* Düz çizgi */}
+        <div className={styles.HeaderDivider}></div>
+        
         <IoLogOutOutline
           className={styles.HeaderExitIcon}
           onClick={handleClick}
           style={{ cursor: 'pointer', fontSize: '1.5rem' }} // İkon tıklanabilir ve görsel olarak belirgin olsun
           title="Exit" // Tooltip için
         />
+        <button className={styles.HeaderExitButton} onClick={handleClick}>
+          Exit
+        </button>
       </div>
     </header>
   );
