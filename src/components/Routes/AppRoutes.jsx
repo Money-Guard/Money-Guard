@@ -4,7 +4,6 @@ import Layout from "../Layout/index";
 import DefaultRoutes from "./DefaultRoutes";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayout from "../DashboardLayout";
-import StatisticsTab from "../StaticDashboard/StaticTab/StatisticsTab";
 
 const LoginPage = lazy(() => import("../../pages/LoginPage"));
 const RegistirationPage = lazy(() => import("../../pages/RegistrationPage"));
