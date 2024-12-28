@@ -10,6 +10,7 @@ const RegistirationPage = lazy(() => import("../../pages/RegistrationPage"));
 const Deneme = lazy(() => import("../Deneme"));
 const DashboardPage = lazy(() => import("../../pages/DashboardPage/index"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/index"));
+const StatisticsTab = lazy(()=>import('../../components/StaticDashboard/StaticTab/StatisticsTab'))
 export default function AppRoutes() {
   return (
     <Suspense>
@@ -25,7 +26,7 @@ export default function AppRoutes() {
               <Route path="/dashboard" element={<DashboardPage />}>
                 <Route index element={<Navigate to="home" />} />
                 <Route path="home" element={<Deneme />} />
-                <Route path="statics" element={<Deneme />} />
+                <Route path="statics" element={ <StatisticsTab /> } />
               </Route>
             </Route>
           </Route>
