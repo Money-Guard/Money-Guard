@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const expenseSchema = yup
+export const incomeSchema = yup
   .object({
     amount: yup
       .number("Sayı Gir")
@@ -9,9 +9,6 @@ export const expenseSchema = yup
       .date()
       .typeError("Geçerli bir tarih seçmelisiniz")
       .required("Tarih zorunlu"),
-    categoryId: yup
-      .string()
-      .required("Kategori seçimi zorunlu"),
     comment: yup
       .string()
       .required("Yorum alanı zorunlu"),

@@ -1,64 +1,93 @@
-import React, { useEffect } from "react";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {expenseSchema} from "../../../validations/ExpenseFormVal";
+import { expenseSchema } from "../../../validations/ExpenseFormVal";
 import DatePicker from "react-datepicker";
-import { useState } from "react";
-import { addTransaction, fetchCategories } from "../../../redux/transaction/operations";
+import { addTransaction } from "../../../redux/transaction/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../../redux/transaction/selectors";
+import "react-datepicker/dist/react-datepicker.css";
 
-export default function index() {
-
+export default function Index() {
   const dispatch = useDispatch();
-  const categories = useSelector(selectCategories)
-  const token = useSelector(state => state.auth.token)
-  console.log(categories)
+  const categories = useSelector(selectCategories);
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
 
-  useEffect(() => {
-    dispatch(fetchCategories(token))
-  },[dispatch,token])
+  const expenseCategories = categories.filter(
+    (category) => category.type === "EXPENSE" && category.id
+  );
 
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(expenseSchema) });
+  } = useForm({
+    resolver: yupResolver(expenseSchema),
+    defaultValues: {
+      amount: "",
+      date: new Date(),
+      comment: "",
+      categoryId: "",
+    },
+  });
 
+  const onSubmit = (data) => {
+    const formattedData = {
+      transactionDate: data.date.toISOString(),
+      type: "EXPENSE",
+      categoryId: selectedCategoryId,
+      comment: data.comment,
+      amount: -data.amount,
+    };
 
-  const [startDate, setStartDate] = useState(new Date());
-
-  const onSubmit = (addTransactionData) => {
-    dispatch(addTransaction(addTransactionData));
+    console.log(formattedData);
+    dispatch(addTransaction(formattedData));
+    reset();
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <select name="" id="">
+        <select
+          {...register("categoryId")}
+          onChange={(e) => setSelectedCategoryId(e.target.value)}
+        >
           <option value="">Select Categories</option>
-          {
-            categories?.map(category => (
-              <option key={category.id} value={category.name}>{category.name}</option>
-            ))
-          }
+          {expenseCategories?.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
         </select>
-        <div className="flex ">
-          <input {...register("sum")} placeholder="0.00" />
+        {errors.categoryId && <p>{errors.categoryId.message}</p>}
+
+        <div className="flex">
+          <input {...register("amount")} placeholder="0.00" />
+          {errors.amount && <p>{errors.amount.message}</p>}
+
           <Controller
             name="date"
             control={control}
+            rules={{ required: "Date is required" }}
             render={({ field }) => (
               <DatePicker
                 {...field}
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                selected={field.value || startDate}
+                onChange={(date) => {
+                  setStartDate(date);
+                  field.onChange(date);
+                }}
               />
             )}
           />
+          {errors.date && <p>{errors.date.message}</p>}
         </div>
+
         <input {...register("comment")} placeholder="comment" />
+        {errors.comment && <p>{errors.comment.message}</p>}
+
+        <button type="submit">Save</button>
       </form>
     </div>
   );

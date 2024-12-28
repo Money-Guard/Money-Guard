@@ -5,13 +5,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleAddMode } from "../../redux/modal/slice";
 import ExpenseForm from "./ExpenseForm";
 import IncomeForm from "./IncomeForm";
+import { fetchCategories } from "../../redux/transaction/operations";
+import { useEffect } from "react";
 
 export default function Modal() {
   const dispatch = useDispatch();
   const addMode = useSelector((state) => state.modal.addMode);
+  const token = useSelector ((state) => state.auth.token)
   const modalMode = useSelector((state) => state.modal.modalMode);
 
   console.log(modalMode);
+
+  useEffect(() => {
+    dispatch(fetchCategories(token));
+  }, [dispatch, token]);
 
   return (
     <div className="h-screen fixed w-full bg-white/30 flex justify-center items-center backdrop-blur-sm">
