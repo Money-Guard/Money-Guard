@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { Route, Routes, Navigate } from "react-router";
 import Layout from "../Layout/index";
 import DefaultRoutes from "./DefaultRoutes";
@@ -23,7 +23,8 @@ export default function AppRoutes() {
           <Route element={<PrivateRoutes />}>
             <Route element={<DashboardLayout />}>
               <Route path="/dashboard" element={<DashboardPage />}>
-                {/* Buraya sağ taraftaki istatistik ve transaction list componentleri gelicek / sz eklenicek */}
+                <Route index element={<Navigate to="home" />} />
+                <Route path="home" element={<Deneme />} />
                 <Route path="statics" element={<Deneme />} />
               </Route>
             </Route>
