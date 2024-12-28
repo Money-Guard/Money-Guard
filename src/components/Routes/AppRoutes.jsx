@@ -1,9 +1,10 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { Route, Routes, Navigate } from "react-router";
 import Layout from "../Layout/index";
 import DefaultRoutes from "./DefaultRoutes";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayout from "../DashboardLayout";
+import StatisticsTab from "../StaticDashboard/StaticTab/StatisticsTab";
 
 const LoginPage = lazy(() => import("../../pages/LoginPage"));
 const RegistirationPage = lazy(() => import("../../pages/RegistrationPage"));
@@ -23,8 +24,9 @@ export default function AppRoutes() {
           <Route element={<PrivateRoutes />}>
             <Route element={<DashboardLayout />}>
               <Route path="/dashboard" element={<DashboardPage />}>
-                {/* Buraya sağ taraftaki istatistik ve transaction list componentleri gelicek / sz eklenicek */}
-                <Route path="statics" element={<Deneme />} />
+                <Route index element={<Navigate to="home" />} />
+                <Route path="home" element={<Deneme />} />
+                <Route path="statics" element={<StatisticsTab />} />
               </Route>
             </Route>
           </Route>

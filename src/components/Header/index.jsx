@@ -7,7 +7,7 @@ import { logout } from '../../redux/auth/operations';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const username = useSelector((state) => state.auth.username); // Username doğrudan alınıyor
+  const {username} = useSelector((state) => state.auth.user); // Username doğrudan alınıyor
 
   const handleClick = () => {
     dispatch(logout()); // Redux logout işlemini tetikleme
@@ -19,7 +19,7 @@ const Header = () => {
         <img src={logo} alt="Logo" className={styles.HeaderImage} />
       </div>
       <div className={styles.HeaderUserSection}>
-        <span className={styles.HeaderUserName}>{username || 'Name'}</span> {/* Kullanıcı adı yoksa 'Name' göster */}
+        <span className={styles.HeaderUserName}>{username}</span> {/* Kullanıcı adı yoksa 'Name' göster */}
         <IoLogOutOutline
           className={styles.HeaderExitIcon}
           onClick={handleClick}
