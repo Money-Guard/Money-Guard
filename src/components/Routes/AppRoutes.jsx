@@ -4,6 +4,7 @@ import Layout from "../Layout/index";
 import DefaultRoutes from "./DefaultRoutes";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayout from "../DashboardLayout";
+import StatisticsTab from "../StaticDashboard/StaticTab/StatisticsTab";
 
 const LoginPage = lazy(() => import("../../pages/LoginPage"));
 const RegistirationPage = lazy(() => import("../../pages/RegistrationPage"));
@@ -26,7 +27,7 @@ export default function AppRoutes() {
               <Route path="/dashboard" element={<DashboardPage />}>
                 <Route index element={<Navigate to="home" />} />
                 <Route path="home" element={<Deneme />} />
-                <Route path="statics" element={ <StatisticsTab /> } />
+                <Route path="statics" element={<StatisticsTab />} />
               </Route>
             </Route>
           </Route>

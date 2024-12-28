@@ -20,8 +20,8 @@ const Layout = () => {
           setIsLoading(false);
         }
       }
-    )()
-  },[])
+    )();
+  }, []);
 
   return (
     <div>
