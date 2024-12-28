@@ -45,3 +45,16 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+
+export const currentUser = createAsyncThunk("auth/currentUser", async(token, thunkAPI) => {
+  try{
+    if(!token){
+      return thunkAPI.rejectWithValue("No token found")
+    }
+    setAxios(token)
+    const response = await costumAxiosInstance.get("/api/users/current");
+    return response.data;
+  }catch(e){
+    return thunkAPI.rejectWithValue(e.message)
+  }
+})
