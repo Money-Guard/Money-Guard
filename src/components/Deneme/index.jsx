@@ -1,7 +1,7 @@
 import React from "react";
 
 const Deneme = () => {
-  return <div>Statics</div>;
+  return <div>Home</div>;
 };
 
 export default Deneme;
