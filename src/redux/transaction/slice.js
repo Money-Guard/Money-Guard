@@ -4,12 +4,15 @@ import {
   addTransaction,
   deleteTransaction,
   editTransaction,
+  fetchCategories
 } from "./operations";
 
 const initialState = {
   transactionList: [],
   status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
+  isLoading: false,
+  categories: [],
 };
 
 const transactionSlice = createSlice({
@@ -18,37 +21,43 @@ const transactionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // fetchTransactions
-      .addCase(fetchTransactions.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
+      // Fetch transactions
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.transactionList = action.payload;
+        state.isLoading = false;
+        state.error = null;
+        state.status = "success"; 
+      })
+      .addCase(fetchTransactions.pending, (state) => {
+        state.isLoading = true;
+        state.status = "loading"; 
       })
       .addCase(fetchTransactions.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload || action.error.message;
+        state.isLoading = false;
+        state.error = action.payload;
+        state.status = "failed"; 
       })
-      // addTransaction
-      .addCase(addTransaction.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
+      
+      // Add transaction
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.transactionList.push(action.payload);
+        state.isLoading = false;
+        state.error = null;
+        state.status = "success";
+      })
+      .addCase(addTransaction.pending, (state) => {
+        state.isLoading = true;
+        state.status = "loading";
       })
       .addCase(addTransaction.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
         state.status = "failed";
-        state.error = action.payload || action.error.message;
       })
-      // editTransaction
-      .addCase(editTransaction.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
+      
+      // Edit transaction
       .addCase(editTransaction.fulfilled, (state, action) => {
         state.status = "succeeded";
         const updatedTransaction = action.payload;
@@ -58,25 +67,55 @@ const transactionSlice = createSlice({
         if (index !== -1) {
           state.transactionList[index] = updatedTransaction;
         }
+        state.isLoading = false;
+        state.error = null;
+        state.status = "success";
+      })
+      .addCase(editTransaction.pending, (state) => {
+        state.isLoading = true;
+        state.status = "loading";
       })
       .addCase(editTransaction.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
         state.status = "failed";
-        state.error = action.payload || action.error.message;
       })
-      // deleteTransaction
-      .addCase(deleteTransaction.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
+      
+      // Delete transaction
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.transactionList = state.transactionList.filter(
           (transaction) => transaction.id !== action.payload
         );
+        state.isLoading = false;
+        state.error = null;
+        state.status = "success";
+      })
+      .addCase(deleteTransaction.pending, (state) => {
+        state.isLoading = true;
+        state.status = "loading";
       })
       .addCase(deleteTransaction.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
         state.status = "failed";
-        state.error = action.payload || action.error.message;
+      })
+
+      // Fetch categories
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.categories = action.payload;
+        state.isLoading = false;
+        state.error = null;
+        state.status = "success";
+      })
+      .addCase(fetchCategories.pending, (state) => {
+        state.isLoading = true;
+        state.status = "loading";
+      })
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.status = "failed";
       });
   },
 });
