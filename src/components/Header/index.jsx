@@ -7,7 +7,7 @@ import { logout } from '../../redux/auth/operations';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const username = useSelector((state) => state.auth.username); // Username doğrudan alınıyor
+  const {username} = useSelector((state) => state.auth.user); // Username doğrudan alınıyor
 
   const handleClick = () => {
     dispatch(logout()); // Redux logout işlemini tetikleme

@@ -1,38 +1,68 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login } from "./operations";
+import { login, register, logout, currentUser } from "./operations";
 
 const initialState = {
   user: {
-    id: "",
     username: "",
     email: "",
-    balance: 0,
   },
   token: "",
   isLoggedIn: false,
   status: "idle",
-  isLoading: true,
-  error: null
-}
+  isLoading: false,
+  error: null,
+};
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: initialState,
+  initialState,
   extraReducers: (builder) => {
-    builder.addCase(login.fulfilled, (state, action) => {
-      state.status = "succeessed";
-      state.isLoading = false;
-      state.isLoggedIn = true;
-      state.user = action.payload.user
-      state.token = action.payload.token
-    }).addCase(login.pending, (state, action) => {
-      state.status = "loading";
-      state.isLoading = true;
-    }).addCase(login.rejected, (state, action) => {
-      state.status = "rejected";
-      state.isLoading = false;
-      state.error= action.payload
-    })
+    builder
+      .addCase(login.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.isLoggedIn = true;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.status = "succeeded"; 
+        state.isLoggedIn = true;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.status = "succeeded"; 
+        state.isLoggedIn = false;
+        state.user = null;
+        state.token = null;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(currentUser.fulfilled, (state, action) => {
+        state.status = "succeeded"; 
+        state.isLoggedIn = true;
+        state.user = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addMatcher(
+        (action) => action.type.endsWith("/pending"),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        (action) => action.type.endsWith("/rejected"),
+        (state, action) => {
+          state.error = action.payload;
+          state.isLoading = false;
+        }
+      );
   },
 });
 
