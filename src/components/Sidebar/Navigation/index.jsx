@@ -11,7 +11,7 @@ const Navigation = () => {
       <ul className={styles.NavList}>
         <li className={styles.NavItem}>
           <NavLink
-            to="home"
+            to="/dashboard/home"
             className={({ isActive }) => (isActive ? styles.ActiveLink : '')}
           >
             <div className={styles.IconTitleContainer}>
@@ -22,7 +22,7 @@ const Navigation = () => {
         </li>
         <li className={styles.NavItem}>
           <NavLink
-            to="statistics"
+            to="/dashboard/statics"
             className={({ isActive }) => (isActive ? styles.ActiveLink : '')}
           >
             <div className={styles.IconTitleContainer}>
@@ -33,7 +33,7 @@ const Navigation = () => {
         </li>
         <li className={styles.NavItem}>
           <NavLink
-            to="currency"
+            to="/dashboard/currency"
             className={({ isActive }) => (isActive ? styles.ActiveLink : '')}
           >
             <div className={styles.IconTitleContainer}>
