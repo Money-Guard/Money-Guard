@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styles from "./StatisticsTable.module.css";
 import { selectTransactions } from "../../../redux/transaction/selectors";
 import { useSelector } from "react-redux";
@@ -23,15 +22,6 @@ const StatisticsTable = () => {
       </tbody>
     </table>
   );
-};
-
-StatisticsTable.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      category: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired,
-    })
-  ).isRequired,
 };
 
 export default StatisticsTable;

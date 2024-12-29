@@ -68,3 +68,22 @@ export const fetchCategories = createAsyncThunk(
     }
   }
 );
+
+export const fetchTransactionsByDate = createAsyncThunk(
+  "transactions/fetchTransactionsByDate",
+  async ({ month, year } = {}, thunkAPI) => {
+    try {
+      const query =
+        month && year
+          ? `?month=${month}&year=${year}`
+          : ""; // Parametre yoksa boş bırak
+      const response = await costumAxiosInstance.get(
+        `/api/transactions-summary${query}`
+      );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+

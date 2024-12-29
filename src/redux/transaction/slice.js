@@ -4,7 +4,8 @@ import {
   addTransaction,
   deleteTransaction,
   editTransaction,
-  fetchCategories
+  fetchCategories,
+  fetchTransactionsByDate,
 } from "./operations";
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   error: null,
   isLoading: false,
   categories: [],
+  transactionsByDate: [],
 };
 
 const transactionSlice = createSlice({
@@ -26,18 +28,18 @@ const transactionSlice = createSlice({
         state.transactionList = action.payload;
         state.isLoading = false;
         state.error = null;
-        state.status = "success"; 
+        state.status = "success";
       })
       .addCase(fetchTransactions.pending, (state) => {
         state.isLoading = true;
-        state.status = "loading"; 
+        state.status = "loading";
       })
       .addCase(fetchTransactions.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-        state.status = "failed"; 
+        state.status = "failed";
       })
-      
+
       // Add transaction
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.transactionList.push(action.payload);
@@ -54,11 +56,11 @@ const transactionSlice = createSlice({
         state.error = action.payload;
         state.status = "failed";
       })
-      
+
       // Edit transaction
       .addCase(editTransaction.fulfilled, (state, action) => {
         const updatedTransaction = action.payload;
-        console.log('Updated Transaction:', updatedTransaction);
+        console.log("Updated Transaction:", updatedTransaction);
         const index = state.transactionList.findIndex(
           (transaction) => transaction.id === updatedTransaction.id
         );
@@ -78,7 +80,7 @@ const transactionSlice = createSlice({
         state.error = action.payload;
         state.status = "failed";
       })
-      
+
       // Delete transaction
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.transactionList = state.transactionList.filter(
@@ -110,6 +112,20 @@ const transactionSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchCategories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.status = "failed";
+      })
+      //Fetch by date
+      .addCase(fetchTransactionsByDate.fulfilled, (state, action) => {
+        state.status = "success";
+        state.transactionsByDate = action.payload;
+      })
+      .addCase(fetchTransactionsByDate.pending, (state) => {
+        state.isLoading = true;
+        state.status = "loading";
+      })
+      .addCase(fetchTransactionsByDate.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
         state.status = "failed";
