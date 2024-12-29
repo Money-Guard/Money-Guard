@@ -73,10 +73,7 @@ export const fetchTransactionsByDate = createAsyncThunk(
   "transactions/fetchTransactionsByDate",
   async ({ month, year } = {}, thunkAPI) => {
     try {
-      const query =
-        month && year
-          ? `?month=${month}&year=${year}`
-          : ""; // Parametre yoksa boş bırak
+      const query = month && year ? `?month=${month}&year=${year}` : "";
       const response = await costumAxiosInstance.get(
         `/api/transactions-summary${query}`
       );
@@ -86,4 +83,3 @@ export const fetchTransactionsByDate = createAsyncThunk(
     }
   }
 );
-

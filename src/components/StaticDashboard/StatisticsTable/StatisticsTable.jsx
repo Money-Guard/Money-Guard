@@ -1,10 +1,14 @@
 import styles from "./StatisticsTable.module.css";
-import { selectTransactions } from "../../../redux/transaction/selectors";
+import { selectTransactionsByDate } from "../../../redux/transaction/selectors";
 import { useSelector } from "react-redux";
 
+
 const StatisticsTable = () => {
-  const transactions = useSelector(selectTransactions)
+
+  const transactions = useSelector(selectTransactionsByDate)
+
   return (
+    <>
     <table className={styles.statisticsTable}>
       <thead>
         <tr>
@@ -13,14 +17,16 @@ const StatisticsTable = () => {
         </tr>
       </thead>
       <tbody>
-        {transactions?.map((item, index) => (
+        {transactions?.categoriesSummary?.map((item, index) => (
           <tr key={index}>
-            <td>{item.category.id}</td>
-            <td>{item.amount}</td>
+            <td>{item.name}</td>
+            <td>{item.total}</td>
           </tr>
         ))}
       </tbody>
     </table>
+    <div>sa</div>
+    </>
   );
 };
 

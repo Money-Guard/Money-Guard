@@ -2,14 +2,14 @@ import styles from "./StatisticsDashboard.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTransactionsByDate } from "../../../redux/transaction/operations";
-import { selectTransactions } from "../../../redux/transaction/selectors";
+import { selectTransactionsByDate } from "../../../redux/transaction/selectors";
+import StatisticsTable from "../StatisticsTable/StatisticsTable"; // StatisticsTable bileşenini buraya dahil ettik
 
 const StatisticsDashboard = () => {
   const dispatch = useDispatch();
-  const transactions = useSelector(selectTransactions);
+  const transactionsByDate = useSelector(selectTransactionsByDate);
   const currentYear = new Date().getFullYear();
 
-  
   const years = Array.from({ length: 10 }, (_, i) => currentYear - i);
   const months = Array.from({ length: 12 }, (_, i) => ({
     value: i + 1,
@@ -19,7 +19,6 @@ const StatisticsDashboard = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
-  
   useEffect(() => {
     dispatch(
       fetchTransactionsByDate({
@@ -29,8 +28,8 @@ const StatisticsDashboard = () => {
     );
   }, [selectedMonth, selectedYear, dispatch]);
   
+  console.log(transactionsByDate);
 
-  console.log(transactions)
   return (
     <div className={styles.statisticsDashboard}>
       <select
@@ -55,18 +54,8 @@ const StatisticsDashboard = () => {
           </option>
         ))}
       </select>
-      <div>
-        {transactions.length > 0 ? (
-          transactions?.map((transaction) => (
-            <div key={transaction.id}>
-              <p>{transaction.name}</p>
-              <p>{transaction.date}</p>
-            </div>
-          ))
-        ) : (
-          <p>No transactions found</p>
-        )}
-      </div>
+
+      <StatisticsTable className={styles.statisticTable} />
     </div>
   );
 };
