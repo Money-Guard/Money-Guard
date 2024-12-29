@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectTransactions } from "../../redux/transaction/selectors";
 import { openModal } from "../../redux/modal/slice";
