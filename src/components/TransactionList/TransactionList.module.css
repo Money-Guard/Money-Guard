@@ -1,14 +1,14 @@
 .tableContainer {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(180deg, #2a1b3d 0%, #1b1b3d 100%);
+  /* background: linear-gradient(180deg, #2a1b3d 0%, #1b1b3d 100%); */
   padding: 2rem;
 }
 
 .transactionTable {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(42, 27, 61, 0.7);
+  /* background: rgba(42, 27, 61, 0.7); */
   border-radius: 12px;
   overflow: hidden;
 }

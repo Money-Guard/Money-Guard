@@ -1,5 +1,6 @@
 .NavContainer {
     height: 100px;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -75,7 +76,6 @@ border-radius: 6px;
 
     
     .NavContainer{
-        width: 300px;
         padding-left: 10px;
        
     }
