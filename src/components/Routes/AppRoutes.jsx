@@ -8,9 +8,11 @@ import DashboardLayout from "../DashboardLayout";
 const LoginPage = lazy(() => import("../../pages/LoginPage"));
 const RegistirationPage = lazy(() => import("../../pages/RegistrationPage"));
 const Home = lazy(() => import("../Home"));
-const DashboardPage = lazy(() => import("../../pages/DashboardPage/index"));
-const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/index"));
+const DashboardPage = lazy(() => import("../../pages/DashboardPage"));
+const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
 const StatisticsTab = lazy(()=>import('../../components/StaticDashboard/StaticTab/StatisticsTab'))
+const CurrencyControl = lazy(() => import("../CurrencyControl"));
+const CurrencyTab = lazy(() => import("../Sidebar/Currency"));
 export default function AppRoutes() {
   return (
     <Suspense>
@@ -27,6 +29,9 @@ export default function AppRoutes() {
                 <Route index element={<Navigate to="home" />} />
                 <Route path="home" element={<Home />} />
                 <Route path="statics" element={<StatisticsTab />} />
+                <Route element={<CurrencyControl/>} >
+                  <Route path="currency" element={<CurrencyTab />} />
+                </Route>
               </Route>
             </Route>
           </Route>

@@ -14,7 +14,9 @@ const DashboardLayout = () => {
           <Navigation />
           <div className={styles.sidebarContent}>
             <Balance />
-            <CurrencyTab />
+            <div className={styles.currencyWrapper}>
+              <CurrencyTab />
+            </div>
           </div>
         </div>
         <div className={styles.contentWrapper}>

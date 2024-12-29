@@ -22,7 +22,9 @@
   .contentWrapper {
     width: 100%;
   }
-  
+  .currencyWrapper{
+    display: none;
+  }
   /* Tablet (768px and up) */
   @media (min-width: 768px) {
   
@@ -33,6 +35,9 @@
     }
     .contentWrapper{
       padding-right: 2rem;
+    }
+    .currencyWrapper{
+      display: block;
     }
   }
   
