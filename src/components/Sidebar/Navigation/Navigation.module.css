@@ -1,12 +1,9 @@
 .NavContainer {
-    height: 100px;
     width: 100%;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    padding: 15px 30px;
-    background-color:  #2F15B0BA;
-    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+    padding: 40px 0px 28px 16px;
+    background-color:  transparent;
 }
 
 .NavList {
@@ -83,12 +80,7 @@ border-radius: 6px;
     .NavList {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        margin-left: 5px;
-            margin-bottom: 28px;
-        margin-right: 290px;
-         margin-top: 40px;
-        
+        gap: 10px; 
     }
         .NavTitle {
             display: block;
