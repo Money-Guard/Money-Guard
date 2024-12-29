@@ -1,54 +1,70 @@
-import React from "react";
-import Switcher from "./Switcher";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleAddMode } from "../../redux/modal/slice";
-import ExpenseForm from "./ExpenseForm";
-import IncomeForm from "./IncomeForm";
-import EditForm from "./EditForm";
-import { closeModal } from "../../redux/modal/slice";
+"use client"
+
+import React from "react"
+import Switcher from "./Switcher"
+import { useSelector, useDispatch } from "react-redux"
+import { toggleAddMode, closeModal } from "../../redux/modal/slice"
+import ExpenseForm from "./ExpenseForm"
+import IncomeForm from "./IncomeForm"
+import EditForm from "./EditForm"
+import { X } from 'lucide-react'
 
 export default function Modal() {
-  const dispatch = useDispatch();
-  const addMode = useSelector((state) => state.modal.addMode);
-  const modalMode = useSelector((state) => state.modal.modalMode);
+  const dispatch = useDispatch()
+  const addMode = useSelector((state) => state.modal.addMode)
+  const modalMode = useSelector((state) => state.modal.modalMode)
 
   const handleClickOutside = (e) => {
-    if(e.target.id === "modal-overlay"){
-      dispatch(closeModal());
+    if (e.target.id === "modal-overlay") {
+      dispatch(closeModal())
     }
   }
 
   return (
-    <div onClick={handleClickOutside} id="modal-overlay" className="h-screen fixed top-0 w-full bg-white/30 flex justify-center items-center backdrop-blur-sm">
-      <div className=" flex flex-col h-70 justify-center items-center bg-green-300 shadow">
-        <h1>{modalMode === "add" ? "Add Transaction" : "Edit Transaction"}</h1>
+    <div
+      onClick={handleClickOutside}
+      id="modal-overlay"
+      className="fixed z-[500] inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center"
+    >
+      <div className="w-[400px] bg-[#2D1B69]/95 rounded-xl p-6 shadow-xl">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-semibold text-white">
+            {modalMode === "add" ? "Add transaction" : "Edit transaction"}
+          </h1>
+          <button
+            onClick={() => dispatch(closeModal())}
+            className="text-white/60 hover:text-white"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
         {modalMode === "add" ? (
           <>
-            <div className="flex gap-4 items-center">
+            <div className="flex justify-center items-center gap-4 mb-6">
               <p
-                className={`${
-                  addMode === false ? "text-[#FFB627]" : "text-[#FFFFFF99]"
+                className={`text-sm ${
+                  addMode === false ? "text-[#FFB627]" : "text-white/60"
                 }`}
               >
-                income
+                Income
               </p>
               <Switcher onClick={() => dispatch(toggleAddMode())} />
               <p
-                className={`${
-                  addMode === true ? "text-[#FF868D]" : "text-[#FFFFFF99]"
+                className={`text-sm ${
+                  addMode === true ? "text-[#FF868D]" : "text-white/60"
                 }`}
               >
-                gidis
+                Expense
               </p>
             </div>
             {addMode ? <ExpenseForm /> : <IncomeForm />}
           </>
         ) : (
-          <>
-            <EditForm />
-          </>
+          <EditForm />
         )}
       </div>
     </div>
-  );
+  )
 }
+

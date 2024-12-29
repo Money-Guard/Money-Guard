@@ -4,6 +4,7 @@ import { openModal } from "../../redux/modal/slice";
 import styles from "./TransactionList.module.css";
 import TransactionItem from "../TransactionsItem";
 import MobileTransactionCard from "../MobileTransactionCard";
+import { Plus } from 'lucide-react'
 
 const TransactionList = () => {
   const transactions = useSelector(selectTransactions);
@@ -50,7 +51,7 @@ const TransactionList = () => {
       </div>
 
       <button className={styles.addButton} onClick={handleAdd}>
-        +
+        <Plus/>
       </button>
     </div>
   );
