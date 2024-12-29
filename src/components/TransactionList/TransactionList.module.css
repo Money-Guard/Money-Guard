@@ -4,10 +4,6 @@
   padding: 1rem;
 }
 
-.tableWrapper {
-  display: none;
-}
-
 .transactionTable {
   width: 100%;
   border-collapse: collapse;
