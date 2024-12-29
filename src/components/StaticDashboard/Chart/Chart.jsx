@@ -78,7 +78,7 @@ const ChartWithCenterText = () => {
 
   ChartJS.register(centerTextPlugin);
 
-  return <Doughnut data={data} options={options} />;
+  return <Doughnut data={data} options={options} style={{margin:'40px 0'}} />;
 };
 
 export default ChartWithCenterText;

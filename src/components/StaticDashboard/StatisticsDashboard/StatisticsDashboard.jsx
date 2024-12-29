@@ -28,6 +28,7 @@ const StatisticsDashboard = () => {
 
   return (
     <div className={styles.statisticsDashboard}>
+      <div className={styles.selectors}>
       <select
         value={selectedYear}
         onChange={(e) => setSelectedYear(e.target.value)}
@@ -50,6 +51,7 @@ const StatisticsDashboard = () => {
           </option>
         ))}
       </select>
+      </div>
 
       <StatisticsTable className={styles.statisticTable} />
     </div>

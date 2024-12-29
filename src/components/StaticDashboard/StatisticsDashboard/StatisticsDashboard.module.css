@@ -3,58 +3,53 @@
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+  width: 100%;
 }
-
+.selectors{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
 select {
   padding: 5px;
   font-size: 16px;
   background: transparent;
   color: white;
   border: 1px solid hsla(0, 0%, 100%, 0.6);
+  appearance: none; /* Varsayılan stilin görünümünü engeller */
+  outline: none; /* Odaklandığında oluşan dış hatları kaldırır */
+  transition: all 0.3s ease; /* Düzgün geçiş sağlar */
 }
-select option {
-  margin: 40px;
-  background: rgba(0, 0, 0, 0.3);
-  color: #fff;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-}
-
-select option[value="1"] {
-  background: rgba(100, 100, 100, 0.3);
-}
-
-select option[value="2"] {
-  background: rgba(150, 150, 150, 0.3);
-}
-
-select option[value="3"] {
-  background: rgba(200, 200, 200, 0.3);
-}
-
-select option[value="4"] {
-  background: rgba(250, 250, 250, 0.3);
-}
-
 select:focus {
-  outline: none; /* Removes the default focus outline */
-  /* Retain the same styles as the default state */
-  padding: 5px;
-  font-size: 16px;
+  outline: none; 
   background: transparent;
   color: white;
   border: 1px solid hsla(0, 0%, 100%, 0.6);
 }
+
+select:focus {
+  border-color: hsla(0, 0%, 100%, 0.9); /* Odaklandığında border rengini değiştir */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.6); /* Hafif bir gölge ekle */
+}
+
+select option {
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+/* background: rgba(100, 100, 100, 0.3); */
+
+
 /* Tablet ve üzeri cihazlar için */
 @media (min-width: 768px) {
-  .statisticsDashboard {
-    flex-direction: row;
-    justify-content: space-between;
-  }
 
   select {
     font-size: 18px;
     padding: 8px;
     background: transparent;
+    
   }
 }
 

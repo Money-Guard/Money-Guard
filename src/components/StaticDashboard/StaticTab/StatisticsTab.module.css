@@ -4,10 +4,19 @@
   display: flex;
   flex-direction: column; /* Mobil cihazlar için dikey düzen */
   width: 100%;
+  height: 100%;
   gap: 4px;
   background: linear-gradient(to bottom right, #4c1d95, #5b21b6, #1e3a8a);
 }
-
+.chartContainer{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.statisticsDashboardContainer {
+  width: 100%;
+  height: 100%;
+} 
 .chart {
   width: 100%; /* Mobil cihazlarda tam genişlik */
   max-width: 100%;
@@ -24,7 +33,7 @@
   }
   .chart,
   .statisticTable {
-    width: 50%;
+    width: 100%;
   }
   .h3 {
     font-size: 28px; /* Tabletler için başlık boyutu */
@@ -34,12 +43,9 @@
 
 /* Masaüstü ve daha büyük ekranlar için */
 @media (min-width: 1024px) {
-  .statisticsTab {
-    width: 60%; /* Sayfanın %60'ını kaplar */
-    margin-left: auto; /* Sağ tarafa yaslar */
-  }
   .chart {
     max-width: 400px; /* Masaüstü için maksimum genişlik */
+    width: 100%;
   }
   .h3 {
     font-size: 30px; /* Masaüstü için başlık boyutu */

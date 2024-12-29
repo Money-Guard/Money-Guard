@@ -1,18 +1,17 @@
 import StatisticsDashboard from "../StatisticsDashboard/StatisticsDashboard";
-import StatisticsTable from "../StatisticsTable/StatisticsTable";
 import Chart from "../Chart/Chart";
 import styles from "./StatisticsTab.module.css";
 
 const StatisticsTab = () => {
   return (
-    <div>
       <div className={styles.statisticsTab}>
-        <Chart className={styles.chart} />
-        <div>
+        <div className={styles.chartContainer}>
+          <Chart className={styles.chart} />
+        </div>
+        <div className={styles.statisticsDashboardContainer}>
           <StatisticsDashboard />
         </div>
       </div>
-    </div>
   );
 };
 

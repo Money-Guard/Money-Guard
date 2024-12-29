@@ -8,7 +8,7 @@ const StatisticsTable = () => {
   const transactions = useSelector(selectTransactionsByDate)
 
   return (
-    <>
+
     <table className={styles.statisticsTable}>
       <thead>
         <tr>
@@ -25,8 +25,7 @@ const StatisticsTable = () => {
         ))}
       </tbody>
     </table>
-    <div>sa</div>
-    </>
+
   );
 };
 
