@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../../validations/RegistrationFormVal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { register as registerOperation } from "../../../redux/auth/operations";
 import { Mail, Lock, User } from "lucide-react";
 import { useNavigate } from "react-router";
@@ -10,10 +10,6 @@ import { usePasswordStrength } from "../../../hooks/usePasswordStrength";
 export default function RegistrationForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(
-    "token : ",
-    useSelector((state) => state.auth.token)
-  );
 
   const {
     register,
@@ -34,7 +30,6 @@ export default function RegistrationForm() {
   };
 
   const onSubmit = async (registerData) => {
-    console.log("Register data : ", registerData);
 
     const response = await dispatch(
       registerOperation({
@@ -43,8 +38,6 @@ export default function RegistrationForm() {
         password: registerData.password,
       })
     );
-    console.log("register response : ", response);
-
     if (response.type.includes("rejected")) {
       alert("Üyelik oluşturulamadı");
     }

@@ -1,9 +1,8 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { TiHome } from "react-icons/ti";
 import { BiStats } from "react-icons/bi";
 import { FaDollarSign } from "react-icons/fa6";
-import styles from './Navigation.module.css'; // Modül CSS
+import styles from './Navigation.module.css'; 
 
 const Navigation = () => {
   return (

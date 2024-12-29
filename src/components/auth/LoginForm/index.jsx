@@ -9,10 +9,6 @@ import { useNavigate } from "react-router";
 export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(
-    "token : ",
-    useSelector((state) => state.auth.token)
-  );
 
   const {
     register,
@@ -24,7 +20,7 @@ export default function LoginForm() {
 
   const onSubmit = async (loginData) => {
     const response = await dispatch(login(loginData));
-    console.log(response);
+    console.info(response);
 
     if (response.type.includes("rejected")) {
       alert("Kullanıcı adı veya şifre yanlış");

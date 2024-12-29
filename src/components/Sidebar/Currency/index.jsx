@@ -7,8 +7,6 @@ const CurrencyTab = () => {
 
   const currencies = useSelector(selectedCurrency)
 
-  console.log(currencies)
-
   return (
     <div className={styles.currencyTab}>
       <div className={styles.tableWrapper}>

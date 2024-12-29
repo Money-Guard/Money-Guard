@@ -53,8 +53,6 @@ export default function index() {
       comment: data.comment,
       amount: editField.type === "INCOME" ? data.amount : -data.amount,
     };
-
-    console.log(formattedData);
     dispatch(
       editTransaction({ transactionId, updateTransaction: formattedData })
     );

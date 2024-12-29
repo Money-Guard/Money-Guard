@@ -8,14 +8,13 @@
 
 th,
 td {
-  border-bottom: 1px solid #ddd;
   padding: 8px;
   font-size: 14px; /* Mobil cihazlar için daha küçük yazı boyutu */
+  text-align: center;
 }
 
 th {
   background: rgba(82, 59, 126, 0.6);
-  border-radius: 8px;
 }
 
 /* Tablet ve üzeri cihazlar için */

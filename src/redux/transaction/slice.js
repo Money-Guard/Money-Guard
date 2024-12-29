@@ -60,7 +60,7 @@ const transactionSlice = createSlice({
       // Edit transaction
       .addCase(editTransaction.fulfilled, (state, action) => {
         const updatedTransaction = action.payload;
-        console.log("Updated Transaction:", updatedTransaction);
+        console.info("Updated Transaction:", updatedTransaction);
         const index = state.transactionList.findIndex(
           (transaction) => transaction.id === updatedTransaction.id
         );

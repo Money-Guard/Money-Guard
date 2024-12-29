@@ -5,7 +5,10 @@
     padding: 40px 0px 28px 16px;
     background-color:  transparent;
 }
-
+.ActiveLink {
+    color: #734AEF;
+    font-weight: 700;
+}
 .NavList {
    
     
