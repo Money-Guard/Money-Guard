@@ -16,7 +16,7 @@ const ChartWithCenterText = () => {
     datasets: [
       {
         label: "value", // Etiket
-        data: transactions?.categoriesSummary?.map((item) => item.total), // Miktarları alıyoruz
+        data: Array.isArray(transactions.categoriesSummary) && (transactions?.categoriesSummary).length > 0 ? transactions?.categoriesSummary.map((item) => item.total) : [1], // Miktarları alıyoruz
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -63,11 +63,13 @@ const ChartWithCenterText = () => {
       ) {
         const ctx = chart.ctx;
         const centerText = chart.config.options.plugins.centerText.text;
+        const color = chart.config.options.plugins.centerText.color || 'white';
 
         ctx.save();
         const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
         const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
         ctx.textAlign = "center";
+         ctx.fillStyle = color;
         ctx.textBaseline = "middle";
         ctx.font = "bold 24px sans-serif";
         ctx.fillText(centerText, centerX, centerY);
