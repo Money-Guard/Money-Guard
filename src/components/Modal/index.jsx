@@ -28,7 +28,8 @@ export default function Modal() {
     >
       <div className="w-[400px] bg-[#2D1B69]/95 rounded-xl p-6 shadow-xl">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-semibold text-white">
+          <div className="w-[20px]"></div>
+          <h1 className="text-2xl text-center font-semibold text-white">
             {modalMode === "add" ? "Add transaction" : "Edit transaction"}
           </h1>
           <button
