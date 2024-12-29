@@ -1,48 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Currency.module.css";
+import { useSelector } from "react-redux";
+import { selectedCurrency } from "../../../redux/bankApi/selectors";
 
 const CurrencyTab = () => {
-  const [currencies, setCurrencies] = useState([]);
-  const STORAGE_KEY = "currencyData";
-  const ONE_HOUR = 60 * 60 * 1000;
 
-  useEffect(() => {
-    const fetchCurrencies = async () => {
-      const storedData = localStorage.getItem(STORAGE_KEY);
-      const now = new Date().getTime();
+  const currencies = useSelector(selectedCurrency)
 
-      if (storedData) {
-        const { data, timestamp } = JSON.parse(storedData);
-        if (now - timestamp < ONE_HOUR) {
-          setCurrencies(data);
-          return;
-        }
-      }
-
-      try {
-        const response = await fetch("https://api.monobank.ua/bank/currency");
-        const apiData = await response.json();
-        const filteredData = filterCurrencies(apiData);
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify({ data: filteredData, timestamp: now })
-        );
-        setCurrencies(filteredData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchCurrencies();
-  }, []);
-
-  const filterCurrencies = (data) => {
-    return data.filter(
-      (item) =>
-        (item.currencyCodeA === 840 && item.currencyCodeB === 980) || // USD
-        (item.currencyCodeA === 978 && item.currencyCodeB === 980)   // EUR
-    );
-  };
+  console.log(currencies)
 
   return (
     <div className={styles.currencyTab}>

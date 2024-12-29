@@ -5,11 +5,17 @@ import { fetchBankCurrency } from "./operations";
 const bankApiSlice = createSlice({
     name: "bankApi",
     initialState: {
-        currency : []
+        currency : [],
+        error: null,
+        status: "idle",
     },
     extraReducers: (builder => {
         builder.addCase(fetchBankCurrency.fulfilled, (state, action) => {
             state.currency = action.payload
+        }).addCase(fetchBankCurrency.pending, (state) => {
+            state.status = "loading"
+        }).addCase(fetchBankCurrency.rejected, (state, action) => {
+            state.error = action.payload
         })
     })
 })
