@@ -1,79 +1,57 @@
-/* Genel tablo düzeni */
 .tableContainer {
-  max-width: 900px; /* Tablonun maksimum genişliği */
-  margin: 0 auto; /* Varsayılan olarak ortalanır */
-  overflow-x: auto; /* İçeriğin taşmasını önler */
-  background: rgba(0, 0, 0, 0.6); /* Tablo arka planı */
-  border-radius: 10px; /* Yuvarlatılmış kenarlar */
-  padding: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Hafif gölge */
+  width: 100%;
+  min-height: 100vh;
+  /* background: linear-gradient(180deg, #2a1b3d 0%, #1b1b3d 100%); */
+  padding: 2rem;
 }
 
-/* Tablo genel stili */
 .transactionTable {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* background: rgba(42, 27, 61, 0.7); */
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.transactionTable thead {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.2)
-  );
+.transactionTable thead tr {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
 }
 
-.transactionTable th,
-.transactionTable td {
-  padding: 1rem;
+.transactionTable th {
+  padding: 1rem 1.5rem;
   text-align: left;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.transactionTable td {
+  padding: 1rem 1.5rem;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.addButton {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ffc727, #9e40ba);
+  border: none;
   color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.transactionTable tbody tr:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.sum {
-  font-weight: bold;
-  color: #ffc727;
-}
-
-.actions {
+  font-size: 24px;
+  cursor: pointer;
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(158, 64, 186, 0.35);
+  transition: transform 0.2s;
 }
 
-/* Responsive tasarım */
-
-/* Tablet düzeni */
-@media (min-width: 768px) {
-  .tableContainer {
-    margin: 0 auto; /* Tablet görünümünde ortalanır */
-  }
+.addButton:hover {
+  transform: scale(1.05);
 }
 
-/* Masaüstü düzeni */
-@media (min-width: 1024px) {
-  .tableContainer {
-    margin-left: 0; /* Masaüstü görünümünde sol tarafa yaslanır */
-    margin-right: auto; /* Sağda boşluk kalır */
-  }
-}
-
-/* Mobil düzeni */
-@media (max-width: 767px) {
-  .tableContainer {
-    max-width: 100%; /* Mobilde tam genişlikte olur */
-    margin: 0 auto; /* Mobilde ortalanır */
-    padding: 0.5rem;
-  }
-
-  .transactionTable th,
-  .transactionTable td {
-    font-size: 0.9rem; /* Daha küçük font boyutu */
-    padding: 0.5rem; /* Daha az padding */
-  }
-}

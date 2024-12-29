@@ -1,46 +1,61 @@
-.transactionItem {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
 .transactionItem:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .sum {
-  font-weight: bold;
+  font-weight: 600;
   color: #ffc727;
+}
+
+.sumNegative {
+  color: #ff4b6e;
 }
 
 .actions {
   display: flex;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .editBtn {
-  background: #4caf50;
+  background: transparent;
   border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  color: white;
+  color: #9e40ba;
   cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.editBtn:hover {
+  opacity: 1;
 }
 
 .deleteBtn {
-  background: linear-gradient(90deg, #ffc727, #9e40ba, #7000ff);
+  background: linear-gradient(45deg, #ffc727, #9e40ba);
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   padding: 0.5rem 1rem;
   color: white;
-  font-weight: bold;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: opacity 0.2s;
 }
 
 .deleteBtn:hover {
-  transform: scale(1.05);
   opacity: 0.9;
 }
 
-.deleteBtn:active {
-  transform: scale(0.95);
+.type {
+  font-weight: 500;
 }
+
+.typeExpense {
+  color: #ff4b6e;
+}
+
+.typeIncome {
+  color: #4bff8c;
+}
+

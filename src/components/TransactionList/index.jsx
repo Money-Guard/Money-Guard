@@ -1,10 +1,8 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectTransactions } from "../../redux/transaction/selectors";
 import { openModal } from "../../redux/modal/slice";
 import styles from "./TransactionList.module.css";
 import TransactionItem from "../TransactionsItem";
-
 
 const TransactionList = () => {
   const transactions = useSelector(selectTransactions);
@@ -36,9 +34,12 @@ const TransactionList = () => {
           ))}
         </tbody>
       </table>
-      <button onClick={handleAdd}>+</button>
+      <button className={styles.addButton} onClick={handleAdd}>
+        +
+      </button>
     </div>
   );
 };
 
 export default TransactionList;
+
