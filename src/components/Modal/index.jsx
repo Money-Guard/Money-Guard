@@ -4,25 +4,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleAddMode } from "../../redux/modal/slice";
 import ExpenseForm from "./ExpenseForm";
 import IncomeForm from "./IncomeForm";
-import { fetchCategories } from "../../redux/transaction/operations";
-import { useEffect } from "react";
 import EditForm from "./EditForm";
+import { closeModal } from "../../redux/modal/slice";
 
 export default function Modal() {
   const dispatch = useDispatch();
   const addMode = useSelector((state) => state.modal.addMode);
-  const token = useSelector((state) => state.auth.token);
   const modalMode = useSelector((state) => state.modal.modalMode);
 
   console.log(modalMode);
 
-  useEffect(() => {
-    dispatch(fetchCategories(token));
-  }, [dispatch, token]);
+  const handleClickOutside = (e) => {
+    if(e.target.id === "modal-overlay"){
+      dispatch(closeModal());
+    }
+  }
 
   return (
-    <div className="h-screen fixed w-full bg-white/30 flex justify-center items-center backdrop-blur-sm">
-      <div className=" flex flex-col justify-center w-56 items-center bg-green-300 shadow">
+    <div onClick={handleClickOutside} id="modal-overlay" className="h-screen fixed top-0 w-full bg-white/30 flex justify-center items-center backdrop-blur-sm">
+      <div className=" flex flex-col justify-center items-center bg-green-300 shadow">
         <h1>{modalMode === "add" ? "Add Transaction" : "Edit Transaction"}</h1>
         {modalMode === "add" ? (
           <>
@@ -47,7 +47,6 @@ export default function Modal() {
           </>
         ) : (
           <>
-            <div>edit mode</div>
             <EditForm />
           </>
         )}

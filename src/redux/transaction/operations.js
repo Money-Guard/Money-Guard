@@ -57,12 +57,8 @@ export const editTransaction = createAsyncThunk(
 
 export const fetchCategories = createAsyncThunk(
   "transactions/fetchCategories",
-  async (token, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      if (!token) {
-        return thunkAPI.rejectWithValue("No token found");
-      }
-      setAxios(token);
       const response = await costumAxiosInstance.get(
         "api/transaction-categories"
       );

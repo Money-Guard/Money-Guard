@@ -1,24 +1,32 @@
 import React from "react";
 import styles from "./TransactionItem.module.css";
+import { openModal } from "../../redux/modal/slice";
+import { useDispatch,useSelector } from "react-redux";
+import { selectCategories } from "../../redux/transaction/selectors";
+import { deleteTransaction } from "../../redux/transaction/operations";
 
-const TransactionItem = ({ transaction, onEdit, onDelete }) => {
-  const { id, date, type, category, comment, sum } = transaction;
-
+const TransactionItem = ({ transaction }) => {
+  const { id, transactionDate, type, categoryId, comment, amount } = transaction;
+  const dispatch = useDispatch();
+  const categories = useSelector(selectCategories);
+  const myCategory = categories.find(category => category.id === categoryId)
+  
+  
   const handleEdit = () => {
-    onEdit(id); // Düzenleme işlemini başlatmak için id gönderiliyor
-  };
+    dispatch(openModal({mode:"edit", id}))
+  }
 
   const handleDelete = () => {
-    onDelete(id); // Silme işlemini başlatmak için id gönderiliyor
+    dispatch(deleteTransaction(id)); // Silme işlemini başlatmak için id gönderiliyor
   };
 
   return (
     <tr className={styles.transactionItem}>
-      <td>{date}</td>
-      <td>{type}</td>
-      <td>{category}</td>
+      <td>{new Date(transactionDate).toLocaleDateString('en-US')}</td>
+      <td>{type === "EXPENSE" ? "-" : "+"}</td>
+      <td>{myCategory?.name}</td>
       <td>{comment}</td>
-      <td className={styles.sum}>{sum.toLocaleString()}</td>
+      <td className={styles.sum}>{amount}</td>
       <td className={styles.actions}>
         <button className={styles.editBtn} onClick={handleEdit}>
           ✏️

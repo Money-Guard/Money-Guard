@@ -21,6 +21,7 @@ export default function Index() {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(expenseSchema),

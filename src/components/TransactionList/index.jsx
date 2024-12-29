@@ -1,22 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectTransactions } from "../../redux/transaction/selectors";
-import { deleteTransaction } from "../../redux/transaction/operations"; // Silme işlemi için operasyon
+import { deleteTransaction } from "../../redux/transaction/operations";
 import styles from "./TransactionList.module.css";
 import TransactionItem from "../TransactionsItem";
 
+
 const TransactionList = () => {
   const transactions = useSelector(selectTransactions);
-  const dispatch = useDispatch();
-
-  const handleEditTransaction = (id) => {
-    console.log("Editing transaction with id:", id);
-    // Düzenleme işlemini burada başlatabilir
-  };
-
-  const handleDeleteTransaction = (id) => {
-    dispatch(deleteTransaction(id)); // Redux üzerinden silme işlemini çağır
-  };
 
   return (
     <div className={styles.tableContainer}>
@@ -36,8 +27,6 @@ const TransactionList = () => {
             <TransactionItem
               key={transaction.id}
               transaction={transaction}
-              onEdit={handleEditTransaction}
-              onDelete={handleDeleteTransaction}
             />
           ))}
         </tbody>

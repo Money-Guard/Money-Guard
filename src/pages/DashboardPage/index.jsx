@@ -7,9 +7,7 @@ export default function DashboardPage() {
   return (
     <>
       <h1>Dashboard Page</h1>
-      {/* Transaction List */}
       <TransactionList />
-      {/* Transaction Item */}
       <Outlet />
     </>
   );

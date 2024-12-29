@@ -5,15 +5,18 @@ const modalSlice = createSlice({
   initialState: {
     isModalOpen: false,
     addMode: false,
-    modalMode: "edit",
+    modalMode: "",
+    transactionId: null
   },
   reducers: {
     openModal: (state, action) => {
       state.isModalOpen = true;
-      state.modalMode = action.payload;
+      state.modalMode = action.payload.mode;
+      state.transactionId = action.payload.id;
     },
     closeModal: (state) => {
       state.isModalOpen = false;
+      state.transactionId = null;
     },
     toggleModal: (state) => {
       state.isModalOpen = !state.isModalOpen;
