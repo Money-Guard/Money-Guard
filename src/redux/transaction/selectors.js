@@ -3,3 +3,4 @@ export const selectStatus = state => state.transactions.status;
 export const selectTransactionsIsLoading = state => state.transactions.isLoading;
 export const selectTransactionsError = state => state.transactions.error;
 export const selectCategories = state => state.transactions.categories;
+export const selectTransactionsByDate = state => state.transactions.transactionsByDate

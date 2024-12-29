@@ -1,22 +1,42 @@
-import PropTypes from "prop-types";
 import styles from "./StatisticsDashboard.module.css";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTransactionsByDate } from "../../../redux/transaction/operations";
+import { selectTransactionsByDate } from "../../../redux/transaction/selectors";
+import StatisticsTable from "../StatisticsTable/StatisticsTable"; // StatisticsTable bileşenini buraya dahil ettik
 
-const StatisticsDashboard = ({
-  selectedYear,
-  selectedMonth,
-  onYearChange,
-  onMonthChange,
-}) => {
-  const years = [2023, 2024];
-  const months = ["January", "February"];
+const StatisticsDashboard = () => {
+  const dispatch = useDispatch();
+  const transactionsByDate = useSelector(selectTransactionsByDate);
+  const currentYear = new Date().getFullYear();
+
+  const years = Array.from({ length: 10 }, (_, i) => currentYear - i);
+  const months = Array.from({ length: 12 }, (_, i) => ({
+    value: i + 1,
+    label: new Date(0, i).toLocaleString("en-US", { month: "long" }),
+  }));
+
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+
+  useEffect(() => {
+    dispatch(
+      fetchTransactionsByDate({
+        month: selectedMonth || undefined,
+        year: selectedYear || undefined,
+      })
+    );
+  }, [selectedMonth, selectedYear, dispatch]);
+  
+  console.log(transactionsByDate);
 
   return (
     <div className={styles.statisticsDashboard}>
       <select
-        className={styles.select}
         value={selectedYear}
-        onChange={(e) => onYearChange(Number(e.target.value))}
+        onChange={(e) => setSelectedYear(e.target.value)}
       >
+        <option value="">Select Year</option>
         {years.map((year) => (
           <option key={year} value={year}>
             {year}
@@ -25,23 +45,19 @@ const StatisticsDashboard = ({
       </select>
       <select
         value={selectedMonth}
-        onChange={(e) => onMonthChange(e.target.value)}
+        onChange={(e) => setSelectedMonth(e.target.value)}
       >
+        <option value="">Select Month</option>
         {months.map((month) => (
-          <option key={month} value={month}>
-            {month}
+          <option key={month.value} value={month.value}>
+            {month.label}
           </option>
         ))}
       </select>
+
+      <StatisticsTable className={styles.statisticTable} />
     </div>
   );
-};
-
-StatisticsDashboard.propTypes = {
-  selectedYear: PropTypes.number.isRequired,
-  selectedMonth: PropTypes.string.isRequired,
-  onYearChange: PropTypes.func.isRequired,
-  onMonthChange: PropTypes.func.isRequired,
 };
 
 export default StatisticsDashboard;

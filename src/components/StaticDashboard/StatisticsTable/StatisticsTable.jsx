@@ -1,8 +1,14 @@
-import PropTypes from "prop-types";
 import styles from "./StatisticsTable.module.css";
+import { selectTransactionsByDate } from "../../../redux/transaction/selectors";
+import { useSelector } from "react-redux";
 
-const StatisticsTable = ({ data }) => {
+
+const StatisticsTable = () => {
+
+  const transactions = useSelector(selectTransactionsByDate)
+
   return (
+    <>
     <table className={styles.statisticsTable}>
       <thead>
         <tr>
@@ -11,24 +17,17 @@ const StatisticsTable = ({ data }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item, index) => (
+        {transactions?.categoriesSummary?.map((item, index) => (
           <tr key={index}>
-            <td>{item.category}</td>
-            <td>{item.value}</td>
+            <td>{item.name}</td>
+            <td>{item.total}</td>
           </tr>
         ))}
       </tbody>
     </table>
+    <div>sa</div>
+    </>
   );
-};
-
-StatisticsTable.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      category: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired,
-    })
-  ).isRequired,
 };
 
 export default StatisticsTable;

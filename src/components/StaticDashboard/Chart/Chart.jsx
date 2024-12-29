@@ -1,16 +1,22 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useSelector } from "react-redux";
+import { selectTransactionsByDate } from "../../../redux/transaction/selectors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ChartWithCenterText = () => {
+  // Veriyi Redux'dan alıyoruz
+  const transactions = useSelector(selectTransactionsByDate);
+
+  // Verilerle chart için data hazırlıyoruz
   const data = {
-    labels: ["Red", "Blue", "Yellow"],
+    labels: transactions?.categoriesSummary?.map((item) => item.name), // Kategoriler
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3],
+        label: "value", // Etiket
+        data: transactions?.categoriesSummary?.map((item) => item.total), // Miktarları alıyoruz
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -26,6 +32,9 @@ const ChartWithCenterText = () => {
     ],
   };
 
+  // Tüm transaction'ların toplamını hesapla
+  const totalAmount = transactions?.categoriesSummary?.reduce((sum, item) => sum + item.total, 0);
+
   const options = {
     plugins: {
       legend: {
@@ -37,7 +46,7 @@ const ChartWithCenterText = () => {
       // Özel eklenti
       centerText: {
         display: true,
-        text: "24000",
+        text: totalAmount,
       },
     },
   };
@@ -67,7 +76,6 @@ const ChartWithCenterText = () => {
     },
   };
 
-  // Eklentiyi kaydet
   ChartJS.register(centerTextPlugin);
 
   return <Doughnut data={data} options={options} />;

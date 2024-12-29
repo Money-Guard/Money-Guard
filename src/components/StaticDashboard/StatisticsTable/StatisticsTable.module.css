@@ -30,7 +30,6 @@ th {
 /* Masaüstü ve daha büyük ekranlar için */
 @media (min-width: 1280px) {
   .statisticsTable {
-    width: 60%; /* Sayfanın %60'ını kaplar */
     margin: 0 auto; /* Ortalar */
   }
   th,
