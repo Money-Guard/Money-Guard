@@ -17,6 +17,7 @@ const modalSlice = createSlice({
     closeModal: (state) => {
       state.isModalOpen = false;
       state.transactionId = null;
+      state.addMode = false;
     },
     toggleModal: (state) => {
       state.isModalOpen = !state.isModalOpen;

@@ -3,42 +3,46 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { incomeSchema } from "../../../validations/IncomeFormVal";
 import DatePicker from "react-datepicker";
-import { addTransaction} from "../../../redux/transaction/operations";
+import { addTransaction } from "../../../redux/transaction/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../../redux/transaction/selectors";
 import "react-datepicker/dist/react-datepicker.css";
+import { closeModal } from "../../../redux/modal/slice";
 
 export default function Index() {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
 
-  const incomeCategories = categories.filter(category => category.type === 'INCOME' && category.id);
+  const incomeCategories = categories.filter(
+    (category) => category.type === "INCOME" && category.id
+  );
 
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-    reset
-  } = useForm({ resolver: yupResolver(incomeSchema),
+    reset,
+  } = useForm({
+    resolver: yupResolver(incomeSchema),
     defaultValues: {
       amount: "",
       date: new Date(),
       comment: "",
     },
-   });
+  });
 
-  
   const onSubmit = (data) => {
     const formattedData = {
       transactionDate: data.date.toISOString(),
       type: "INCOME",
-      categoryId: incomeCategories.map(incomeCategorie => incomeCategorie.id)[0],
+      categoryId: incomeCategories.map(
+        (incomeCategorie) => incomeCategorie.id
+      )[0],
       comment: data.comment,
       amount: data.amount,
     };
 
-    console.log(formattedData);
     dispatch(addTransaction(formattedData));
     reset();
   };
@@ -59,7 +63,7 @@ export default function Index() {
               <DatePicker
                 {...field}
                 selected={field.value}
-                onChange={(date) =>field.onChange(date)}
+                onChange={(date) => field.onChange(date)}
               />
             )}
           />
@@ -69,7 +73,10 @@ export default function Index() {
         <input {...register("comment")} placeholder="comment" />
         {errors.comment && <p>{errors.comment.message}</p>}
 
-        <button type="submit">Save</button>
+        <div>
+          <button type="submit">Save</button>
+          <button onClick={() => dispatch(closeModal())}>Cancel</button>
+        </div>
       </form>
     </div>
   );

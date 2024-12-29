@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import transactionReducer from "./transaction/slice"
 import authReducer from "./auth/slice"
 import modalReducer from "./modal/slice"
+import bankApiReducer from "./bankApi/slice"
 
 const authPersistConfig = {
   key: "auth",
@@ -14,7 +15,8 @@ const authPersistConfig = {
 const rootReducer = combineReducers({
     transactions: transactionReducer,
     auth:persistReducer(authPersistConfig, authReducer),
-    modal: modalReducer
+    modal: modalReducer,
+    bankApi: bankApiReducer
   });
 
 

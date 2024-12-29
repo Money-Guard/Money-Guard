@@ -7,6 +7,7 @@ import { addTransaction } from "../../../redux/transaction/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../../redux/transaction/selectors";
 import "react-datepicker/dist/react-datepicker.css";
+import { closeModal } from "../../../redux/modal/slice";
 
 export default function Index() {
   const dispatch = useDispatch();
@@ -41,8 +42,6 @@ export default function Index() {
       comment: data.comment,
       amount: -data.amount,
     };
-
-    console.log(formattedData);
     dispatch(addTransaction(formattedData));
     reset();
   };
@@ -74,9 +73,8 @@ export default function Index() {
             render={({ field }) => (
               <DatePicker
                 {...field}
-                selected={field.value || startDate}
+                selected={field.value}
                 onChange={(date) => {
-                  setStartDate(date);
                   field.onChange(date);
                 }}
               />
@@ -88,7 +86,10 @@ export default function Index() {
         <input {...register("comment")} placeholder="comment" />
         {errors.comment && <p>{errors.comment.message}</p>}
 
-        <button type="submit">Save</button>
+        <div>
+          <button type="submit">Save</button>
+          <button onClick={() => dispatch(closeModal())}>Cancel</button>
+        </div>
       </form>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectTransactionId } from "../../../redux/modal/selectors";
 import {
@@ -12,6 +12,7 @@ import DatePicker from "react-datepicker";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 import { closeModal } from "../../../redux/modal/slice";
+import { fetchBankCurrency } from "../../../redux/bankApi/operations";
 
 export default function index() {
   const dispatch = useDispatch();
@@ -25,9 +26,9 @@ export default function index() {
     (category) => category.id === editField.categoryId
   );
 
-  console.log(categories);
-
-  console.log(transactionId);
+  useEffect(() => {
+    dispatch(fetchBankCurrency());
+  }, [dispatch]);
 
   const {
     register,
@@ -64,11 +65,11 @@ export default function index() {
   return (
     <div className="flex flex-col justify-center items-center">
       <p>
-        <span className={editField.type === "INCOME" && "text-red-500"}>
+        <span className={editField.type === "INCOME" ? "text-red-500" : null}>
           Income
         </span>
         /
-        <span className={editField.type === "EXPENSE" && "text-red-500"}>
+        <span className={editField.type === "EXPENSE" ? "text-red-500" : null}>
           Expense
         </span>
       </p>
