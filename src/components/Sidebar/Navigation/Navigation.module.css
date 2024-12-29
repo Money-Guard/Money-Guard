@@ -1,0 +1,105 @@
+.NavContainer {
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 30px;
+    background-color:  #2F15B0BA;
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+}
+
+.NavList {
+   
+    
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.Icon{
+width: 40px;
+height: 40px;
+padding: 2px;
+color: #4A56E2; 
+background-color: #FFFFFF66;
+border-radius: 6px;
+}
+.NavCurrencyTitle{
+    display: none;
+}
+
+.Icon:hover{
+    color: white;
+    background-color: #734AEF;
+}
+.NavTitle{
+    display: none;
+}
+.CurrencyIcon{
+    width: 40px;
+        height: 40px;
+        padding: 2px;
+        color: #4A56E2;
+        background-color: #FFFFFF66;
+        border-radius: 6px
+
+}
+.CurrencyIcon:hover {
+    color: white;
+    background-color: #734AEF;
+}
+
+
+
+@media screen and (min-width: 768px) {
+
+    .Icon{
+        width: 24px;
+        height: 24px;
+    }
+    .CurrencyIcon {
+        display: none;
+        /* Sadece mobilde göster */
+    }
+    .NavItem :hover{
+        font-weight: 700;
+
+    }
+    .NavTitle {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 27px;
+        font-family: popins;
+        color: #FBFBFB;
+    }
+
+    
+    .NavContainer{
+        width: 300px;
+        padding-left: 10px;
+       
+    }
+   
+    .NavList {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: 5px;
+            margin-bottom: 28px;
+        margin-right: 290px;
+         margin-top: 40px;
+        
+    }
+        .NavTitle {
+            display: block;
+        }
+        .NavCurrencyTitle{
+            display: none;
+        }
+        .IconTitleContainer{
+            display: flex;
+            gap: 23px;
+        }
+        
+}
+
