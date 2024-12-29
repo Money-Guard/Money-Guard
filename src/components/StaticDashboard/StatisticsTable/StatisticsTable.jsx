@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
 import styles from "./StatisticsTable.module.css";
+import { selectTransactions } from "../../../redux/transaction/selectors";
+import { useSelector } from "react-redux";
 
-const StatisticsTable = ({ data }) => {
+const StatisticsTable = () => {
+  const transactions = useSelector(selectTransactions)
   return (
     <table className={styles.statisticsTable}>
       <thead>
@@ -11,10 +14,10 @@ const StatisticsTable = ({ data }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item, index) => (
+        {transactions?.map((item, index) => (
           <tr key={index}>
-            <td>{item.category}</td>
-            <td>{item.value}</td>
+            <td>{item.category.id}</td>
+            <td>{item.amount}</td>
           </tr>
         ))}
       </tbody>
