@@ -3,6 +3,7 @@ import { selectTransactions } from "../../redux/transaction/selectors";
 import { openModal } from "../../redux/modal/slice";
 import styles from "./TransactionList.module.css";
 import TransactionItem from "../TransactionsItem";
+import MobileTransactionCard from "../MobileTransactionCard";
 
 const TransactionList = () => {
   const transactions = useSelector(selectTransactions);
@@ -14,6 +15,7 @@ const TransactionList = () => {
 
   return (
     <div className={styles.tableContainer}>
+      {/* Desktop View */}
       <div className={styles.tableWrapper}>
         <table className={styles.transactionTable}>
           <thead>
@@ -23,7 +25,7 @@ const TransactionList = () => {
               <th>Category</th>
               <th>Comment</th>
               <th>Sum</th>
-              <th>Actions</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -35,6 +37,16 @@ const TransactionList = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile View */}
+      <div className={styles.mobileWrapper}>
+        {transactions.map((transaction) => (
+          <MobileTransactionCard
+            key={transaction.id}
+            transaction={transaction}
+          />
+        ))}
       </div>
 
       <button className={styles.addButton} onClick={handleAdd}>

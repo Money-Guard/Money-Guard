@@ -1,20 +1,57 @@
-.transactionItem:hover {
-  background: rgba(255, 255, 255, 0.03);
+.transactionItem {
+  transition: background-color 0.2s;
+}
+
+.transactionItem td {
+  padding: 16px;
+  /* background: rgba(82, 59, 126, 0.6); */
+  color: white;
+}
+
+.transactionItem td:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.transactionItem td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.transactionItem:hover td {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.type {
+  font-weight: 700;
+}
+
+.typeExpense {
+  color: #FF6596;
+}
+
+.typeIncome {
+  color: #24CCA7;
 }
 
 .sum {
-  font-weight: 600;
-  color: #ffc727;
+  font-weight: 700;
+}
+
+.sumPositive {
+  color: #24CCA7;
+  font-weight: 700;
 }
 
 .sumNegative {
-  color: #ff4b6e;
+  color: #FF6596;
+  font-weight: 700;
 }
 
 .actions {
   display: flex;
-  gap: 0.5rem;
-  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
 }
 
 .editBtn {
@@ -22,8 +59,8 @@
   border: none;
   color: #9e40ba;
   cursor: pointer;
-  padding: 0.5rem;
-  font-size: 1rem;
+  padding: 4px 8px;
+  font-size: 16px;
   opacity: 0.8;
   transition: opacity 0.2s;
 }
@@ -33,12 +70,12 @@
 }
 
 .deleteBtn {
-  background: linear-gradient(45deg, #ffc727, #9e40ba);
+  background: linear-gradient(97deg, #FFC727 0%, #9E40BA 61%, #7000FF 91%);
   border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
+  border-radius: 18px;
+  padding: 4px 12px;
   color: white;
-  font-size: 0.9rem;
+  font-size: 14px;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -47,16 +84,3 @@
   opacity: 0.9;
 }
 
-.type {
-  font-weight: 500;
-}
-
-.typeExpense {
-  color: #ff4b6e;
-}
-
-.typeIncome {
-  color: #4bff8c;
-}
-
- 

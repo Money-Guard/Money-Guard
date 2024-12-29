@@ -27,7 +27,7 @@ const TransactionItem = ({ transaction }) => {
       </td>
       <td>{myCategory?.name}</td>
       <td>{comment}</td>
-      <td className={`${styles.sum} ${type === "EXPENSE" ? styles.sumNegative : ""}`}>
+      <td className={`${styles.sum} ${type === "EXPENSE" ? styles.sumNegative : styles.sumPositive}`}>
         {amount.toFixed(2)}
       </td>
       <td className={styles.actions}>
