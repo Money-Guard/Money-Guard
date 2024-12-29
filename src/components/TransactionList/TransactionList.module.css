@@ -97,5 +97,8 @@
   .mobileWrapper {
     display: none;
   }
+  .addButton{
+    right: 40px;
+  }
 }
 

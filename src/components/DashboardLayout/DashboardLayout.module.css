@@ -31,6 +31,9 @@
       justify-content: flex-end;
       gap: 2rem;
     }
+    .contentWrapper{
+      padding-right: 2rem;
+    }
   }
   
   /* Desktop (1280px and up) */
