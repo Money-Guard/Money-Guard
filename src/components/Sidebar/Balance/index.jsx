@@ -5,7 +5,6 @@ import { selectTotalBalance } from "../../../redux/transaction/selectors";
 
 const Balance = () => {
   const totalBalance = useSelector(selectTotalBalance);
-  console.log(totalBalance);
 
   return (
     <div className={styles.balanceContainer}>

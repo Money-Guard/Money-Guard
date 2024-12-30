@@ -10,8 +10,6 @@ const TransactionList = () => {
   const transactions = useSelector(selectTransactions);
   const dispatch = useDispatch();
 
-  console.log(transactions);
-
   const handleAdd = () => {
     dispatch(openModal({ mode: "add" }));
   };
