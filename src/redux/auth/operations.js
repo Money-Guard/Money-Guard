@@ -9,7 +9,7 @@ export const login = createAsyncThunk(
         "api/auth/sign-in",
         userLoginData
       );
-      const token = response.data.token;
+      const token = response.data.token || "";
 
       setAxios(token);
       return response.data;
@@ -27,7 +27,7 @@ export const register = createAsyncThunk(
         "api/auth/sign-up",
         userRegisterData
       );
-      const token = response.data.token;
+      const token = response.data.token || "";
       setAxios(token);
       return response.data;
     } catch (e) {
