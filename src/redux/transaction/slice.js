@@ -14,8 +14,7 @@ const initialState = {
   error: null,
   isLoading: false,
   categories: [],
-  transactionsByDate: [],
-  totalBalance: 0
+  transactionsByDate: []
 };
 
 const transactionSlice = createSlice({
