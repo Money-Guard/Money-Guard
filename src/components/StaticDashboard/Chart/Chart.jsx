@@ -7,16 +7,18 @@ import { selectTransactionsByDate } from "../../../redux/transaction/selectors";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ChartWithCenterText = () => {
-  // Veriyi Redux'dan alıyoruz
-  const transactions = useSelector(selectTransactionsByDate);
+  const filteredTransactions = useSelector(selectTransactionsByDate);
 
-  // Verilerle chart için data hazırlıyoruz
   const data = {
-    labels: transactions?.categoriesSummary?.map((item) => item.name), // Kategoriler
+    labels: filteredTransactions?.categoriesSummary?.map((item) => item.name),
     datasets: [
       {
-        label: "value", // Etiket
-        data: Array.isArray(transactions.categoriesSummary) && (transactions?.categoriesSummary).length > 0 ? transactions?.categoriesSummary.map((item) => item.total) : [1], // Miktarları alıyoruz
+        label: "value",
+        data:
+          Array.isArray(filteredTransactions.categoriesSummary) &&
+          (filteredTransactions?.categoriesSummary).length > 0
+            ? filteredTransactions?.categoriesSummary.map((item) => item.total)
+            : [1],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -32,9 +34,6 @@ const ChartWithCenterText = () => {
     ],
   };
 
-  // Tüm transaction'ların toplamını hesapla
-  const totalAmount = transactions?.categoriesSummary?.reduce((sum, item) => sum + item.total, 0);
-
   const options = {
     plugins: {
       legend: {
@@ -43,17 +42,15 @@ const ChartWithCenterText = () => {
       tooltip: {
         enabled: true,
       },
-      // Özel eklenti
       centerText: {
         display: true,
-        text: totalAmount,
+        text: filteredTransactions.periodTotal,
       },
     },
   };
-
-  // Özel eklentiyi tanımlama ve kaydetme
-  const centerTextPlugin = {
-    id: "centerText",
+  
+  const centerTextPlugin = {  
+    id: "centerText", 
     beforeDraw: (chart) => {
       if (
         chart.config.options.plugins.centerText.display !== null &&
@@ -63,13 +60,13 @@ const ChartWithCenterText = () => {
       ) {
         const ctx = chart.ctx;
         const centerText = chart.config.options.plugins.centerText.text;
-        const color = chart.config.options.plugins.centerText.color || 'white';
+        const color = chart.config.options.plugins.centerText.color || "white";
 
         ctx.save();
         const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
         const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
         ctx.textAlign = "center";
-         ctx.fillStyle = color;
+        ctx.fillStyle = color;
         ctx.textBaseline = "middle";
         ctx.font = "bold 24px sans-serif";
         ctx.fillText(centerText, centerX, centerY);
@@ -80,7 +77,9 @@ const ChartWithCenterText = () => {
 
   ChartJS.register(centerTextPlugin);
 
-  return <Doughnut data={data} options={options} style={{margin:'40px 0'}} />;
+  return (
+    <Doughnut data={data} options={options} style={{ margin: "40px 0" }} />
+  );
 };
 
 export default ChartWithCenterText;

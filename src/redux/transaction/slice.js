@@ -10,17 +10,17 @@ import {
 
 const initialState = {
   transactionList: [],
-  status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: "idle",
   error: null,
   isLoading: false,
   categories: [],
   transactionsByDate: [],
+  totalBalance: 0
 };
 
 const transactionSlice = createSlice({
   name: "transactions",
   initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder
       // Fetch transactions
@@ -119,6 +119,7 @@ const transactionSlice = createSlice({
       .addCase(fetchTransactionsByDate.fulfilled, (state, action) => {
         state.status = "success";
         state.transactionsByDate = action.payload;
+        state.isLoading = false;
       })
       .addCase(fetchTransactionsByDate.pending, (state) => {
         state.isLoading = true;
