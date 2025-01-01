@@ -6,6 +6,7 @@ import { register as registerOperation } from "../../../redux/auth/operations";
 import { Mail, Lock, User } from "lucide-react";
 import { useNavigate } from "react-router";
 import { usePasswordStrength } from "../../../hooks/usePasswordStrength";
+import toast from "react-hot-toast";
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
@@ -38,8 +39,12 @@ export default function RegistrationForm() {
         password: registerData.password,
       })
     );
-    if (response.type.includes("rejected")) {
-      alert("Üyelik oluşturulamadı");
+    if(response.meta.requestStatus === "fulfilled"){
+      toast.success("Registration successful, you are being redirected.");
+      navigate("/login");
+    }
+    if(response.meta.requestStatus === "rejected"){
+      toast.error("An error occurred. Please try again later.");
     }
   };
 

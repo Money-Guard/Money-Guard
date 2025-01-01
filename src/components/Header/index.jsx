@@ -4,13 +4,20 @@ import { IoLogOutOutline } from "react-icons/io5";
 import logo from '../../assets/images/MoneyGuardLogo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/operations';
+import toast from 'react-hot-toast';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const {username} = useSelector((state) => state.auth.user); // Username doğrudan alınıyor
+  const {username} = useSelector((state) => state.auth.user); 
 
-  const handleClick = () => {
-    dispatch(logout()); // Redux logout işlemini tetikleme
+  const handleClick = async() => {
+    const response = await dispatch(logout()); 
+    if(response.meta.requestStatus === 'fulfilled'){
+      toast.success('Logout successful');
+    }
+    else{
+      toast.error('An error occurred. Please try again later.');
+    }
   };
 
   return (

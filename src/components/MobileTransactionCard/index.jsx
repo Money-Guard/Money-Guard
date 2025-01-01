@@ -4,12 +4,24 @@ import { selectCategories } from "../../redux/transaction/selectors";
 import { openModal } from "../../redux/modal/slice";
 import { deleteTransaction } from "../../redux/transaction/operations";
 import styles from './MobileTransactionCard.module.css';
+import toast from 'react-hot-toast';
 
 const MobileTransactionCard = ({ transaction }) => {
   const { id, transactionDate, type, categoryId, comment, amount } = transaction;
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const myCategory = categories.find(category => category.id === categoryId);
+
+  const handleDelete = async (id) => {
+   const response = await dispatch(deleteTransaction(id));
+   if (response.meta.requestStatus === "fulfilled"){
+    toast.success("Transaction deleted successfully");
+    
+  }
+  if (response.meta.requestStatus === "rejected"){
+      toast.error("An error occurred. Please try again later.");
+  }
+  }
 
   return (
     <div className={styles.mobileCard}>
@@ -50,7 +62,7 @@ const MobileTransactionCard = ({ transaction }) => {
         </button>
         <button 
           className={styles.deleteBtn}
-          onClick={() => dispatch(deleteTransaction(id))}
+          onClick={() => handleDelete(id)}
         >
           Delete
         </button>

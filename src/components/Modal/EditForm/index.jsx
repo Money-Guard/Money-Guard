@@ -14,6 +14,7 @@ import { closeModal } from "../../../redux/modal/slice"
 import { fetchBankCurrency } from "../../../redux/bankApi/operations"
 import {Calendar} from "lucide-react"
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast"
 
 export default function EditForm() {
   const dispatch = useDispatch()
@@ -47,7 +48,7 @@ export default function EditForm() {
     },
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     const formattedData = {
       transactionDate: data.date.toISOString(),
       type: editField.type,
@@ -55,7 +56,14 @@ export default function EditForm() {
       comment: data.comment,
       amount: editField.type === "INCOME" ? data.amount : -data.amount,
     }
-    dispatch(editTransaction({ transactionId, updateTransaction: formattedData }))
+    const response = await dispatch(editTransaction({ transactionId, updateTransaction: formattedData }))
+    if (response.meta.requestStatus === "fulfilled"){
+      dispatch(closeModal());
+      toast.success("Transaction updated successfully");
+    }
+    if (response.meta.requestStatus === "rejected"){
+        toast.error("An error occurred. Please try again later.");
+    }
     reset()
     dispatch(closeModal())
   }

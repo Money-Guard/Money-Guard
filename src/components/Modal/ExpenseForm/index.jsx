@@ -9,6 +9,7 @@ import { selectCategories } from "../../../redux/transaction/selectors";
 import { closeModal } from "../../../redux/modal/slice";
 import { Calendar } from 'lucide-react'
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast";
 
 export default function ExpenseForm() {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ export default function ExpenseForm() {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const formattedData = {
       transactionDate: data.date.toISOString(),
       type: "EXPENSE",
@@ -43,7 +44,14 @@ export default function ExpenseForm() {
       comment: data.comment,
       amount: -data.amount,
     };
-    dispatch(addTransaction(formattedData));
+    const response = await dispatch(addTransaction(formattedData));
+    if (response.meta.requestStatus === "fulfilled"){
+      dispatch(closeModal());
+      toast.success("Expense added successfully");
+    }
+    if (response.meta.requestStatus === "rejected"){
+        toast.error("An error occurred. Please try again later.");
+    }
     reset();
   };
 

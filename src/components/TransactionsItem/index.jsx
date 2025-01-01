@@ -4,6 +4,7 @@ import { openModal } from "../../redux/modal/slice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../redux/transaction/selectors";
 import { deleteTransaction } from "../../redux/transaction/operations";
+import toast from "react-hot-toast";
 
 const TransactionItem = ({ transaction }) => {
   const { id, transactionDate, type, categoryId, comment, amount } = transaction;
@@ -15,8 +16,14 @@ const TransactionItem = ({ transaction }) => {
     dispatch(openModal({mode:"edit", id}))
   }
 
-  const handleDelete = () => {
-    dispatch(deleteTransaction(id));
+  const handleDelete = async () => {
+    const response = await dispatch(deleteTransaction(id));
+    if (response.meta.requestStatus === "fulfilled"){
+      toast.success("Transaction deleted successfully");
+    }
+    if (response.meta.requestStatus === "rejected"){
+        toast.error("An error occurred. Please try again later.");
+    }
   };
 
   return (

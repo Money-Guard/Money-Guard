@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../../validations/LoginFormVal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../../redux/auth/operations";
 import { Mail, Lock } from "lucide-react";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -20,10 +21,12 @@ export default function LoginForm() {
 
   const onSubmit = async (loginData) => {
     const response = await dispatch(login(loginData));
-    console.info(response);
 
-    if (response.type.includes("rejected")) {
-      alert("Kullanıcı adı veya şifre yanlış");
+    if (response.meta.requestStatus === "fulfilled"){
+        toast.success("Login successful, you are being redirected.");
+    }
+    if (response.meta.requestStatus === "rejected"){
+        toast.error("Username or password is incorrect.");
     }
   };
 

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../../redux/transaction/selectors";
 import { closeModal } from "../../../redux/modal/slice";
 import "react-datepicker/dist/react-datepicker.css";
-import { Calendar } from 'lucide-react'
+import toast from "react-hot-toast";
 
 
 export default function IncomeForm() {
@@ -32,7 +32,7 @@ export default function IncomeForm() {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     const formattedData = {
       transactionDate: data.date.toISOString(),
       type: "INCOME",
@@ -42,7 +42,14 @@ export default function IncomeForm() {
       comment: data.comment,
       amount: data.amount,
     };
-    dispatch(addTransaction(formattedData));
+    const response = await dispatch(addTransaction(formattedData));
+    if (response.meta.requestStatus === "fulfilled"){
+      dispatch(closeModal());
+      toast.success("Income added successfully");
+    }
+    if (response.meta.requestStatus === "rejected"){
+        toast.error("An error occurred. Please try again later.");
+    }
     reset();
   };
 
