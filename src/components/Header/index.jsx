@@ -4,11 +4,12 @@ import { IoLogOutOutline } from "react-icons/io5";
 import logo from '../../assets/images/MoneyGuardLogo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/operations';
+import {selectUser} from "../../redux/auth/selectors"
 import toast from 'react-hot-toast';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const {username} = useSelector((state) => state.auth.user); 
+  const {username} = useSelector(selectUser); 
 
   const handleClick = async() => {
     const response = await dispatch(logout()); 

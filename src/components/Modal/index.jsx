@@ -1,24 +1,25 @@
-"use client"
+"use client";
 
-import React from "react"
-import Switcher from "./Switcher"
-import { useSelector, useDispatch } from "react-redux"
-import { toggleAddMode, closeModal } from "../../redux/modal/slice"
-import ExpenseForm from "./ExpenseForm"
-import IncomeForm from "./IncomeForm"
-import EditForm from "./EditForm"
-import { X } from 'lucide-react'
+import React from "react";
+import Switcher from "./Switcher";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleAddMode, closeModal } from "../../redux/modal/slice";
+import { selectModalMode, selectAddMode } from "../../redux/modal/selectors";
+import ExpenseForm from "./ExpenseForm";
+import IncomeForm from "./IncomeForm";
+import EditForm from "./EditForm";
+import { X } from "lucide-react";
 
 export default function Modal() {
-  const dispatch = useDispatch()
-  const addMode = useSelector((state) => state.modal.addMode)
-  const modalMode = useSelector((state) => state.modal.modalMode)
+  const dispatch = useDispatch();
+  const addMode = useSelector(selectAddMode);
+  const modalMode = useSelector(selectModalMode);
 
   const handleClickOutside = (e) => {
     if (e.target.id === "modal-overlay") {
-      dispatch(closeModal())
+      dispatch(closeModal());
     }
-  }
+  };
 
   return (
     <div
@@ -66,6 +67,5 @@ export default function Modal() {
         )}
       </div>
     </div>
-  )
+  );
 }
-
